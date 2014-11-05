@@ -1,9 +1,7 @@
 
 package passwordprotector;
 
-import java.io.Serializable;
-
-public class Password implements Serializable {
+public class Password {
     
     private String username;
     private String mail;
