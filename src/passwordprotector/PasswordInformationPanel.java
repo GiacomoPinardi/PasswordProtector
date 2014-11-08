@@ -1,6 +1,8 @@
 
 package passwordprotector;
 
+import java.util.Arrays;
+
 public class PasswordInformationPanel extends javax.swing.JPanel {
     
     public PasswordInformationPanel() {
@@ -129,6 +131,37 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
+    public int getProblems () {
+        String psw1 = this.getPsw1();
+        String psw2 = this.getPsw2();
+        
+        // psw1 == null || psw2 == null;
+        if (psw1.equals("[]") || psw2.equals("[]")) {
+            psw1 = null;
+            psw2 = null;
+            return 1;
+        }
+        // psw1 != psw2
+        else if (!psw1.equals(psw2)) {
+            psw1 = null;
+            psw2 = null;
+            return 2;
+        }
+        else if (jTextField2.getText().equals("") && jTextField3.getText().equals("")) {
+            return 3;
+        }
+        else {
+            return 0;
+        }
+    }
+    
+    private String getPsw1 () {
+        return Arrays.toString(jPasswordField1.getPassword());
+    }
+    
+    private String getPsw2 () {
+        return Arrays.toString(jPasswordField2.getPassword());
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

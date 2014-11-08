@@ -2,6 +2,7 @@
 package passwordprotector;
 
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 
 public class AddFrame extends javax.swing.JFrame {
     
@@ -11,8 +12,11 @@ public class AddFrame extends javax.swing.JFrame {
     public AddFrame() {
         initComponents();
         
-        this.showPasswordPanel();
+        this.initPasswordPanel();
+        this.initStoragePanel();
         
+        pip.setVisible(true);
+        sip.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -21,10 +25,11 @@ public class AddFrame extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Next");
+        jButton1.setText("Next ->");
         jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -41,15 +46,26 @@ public class AddFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButton3.setText("<- Back");
+        jButton3.setFocusPainted(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jButton3)
+                .addGap(60, 60, 60)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -58,7 +74,8 @@ public class AddFrame extends javax.swing.JFrame {
                 .addContainerGap(313, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -70,12 +87,35 @@ public class AddFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        pip.setVisible(false);
-        jButton1.setText("Save");
-        this.showStoragePanel();
+        switch (pip.getProblems()) {
+            case 0:
+                // all is good
+                pip.setVisible(false);
+                sip.setVisible(true);
+                jButton1.setText("Save");
+                break;
+            case 1:                
+                // no password/s inserted
+                JOptionPane.showMessageDialog(rootPane, "Please insert both passwords!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 2:
+                // passwords don't match
+                JOptionPane.showMessageDialog(rootPane, "The passwords inserted don't match!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 3:
+                // no username and email
+                JOptionPane.showMessageDialog(rootPane, "Please fill username or email field!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                break;
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void showPasswordPanel () {
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        sip.setVisible(false);
+        pip.setVisible(true);
+        jButton1.setText("Next ->");        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void initPasswordPanel () {
         this.setLayout(new BorderLayout());
         //this.add(pip, BorderLayout.CENTER);
         this.add(pip);
@@ -83,7 +123,7 @@ public class AddFrame extends javax.swing.JFrame {
         this.setTitle("Password Protector - Password Info");
     }
     
-    private void showStoragePanel () {        
+    private void initStoragePanel () {        
         this.setLayout(new BorderLayout());
         //this.add(pip, BorderLayout.CENTER);
         this.add(sip);
@@ -94,5 +134,6 @@ public class AddFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }
