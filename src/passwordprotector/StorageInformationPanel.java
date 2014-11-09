@@ -6,6 +6,7 @@
 package passwordprotector;
 
 import java.io.File;
+import java.util.Arrays;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -15,7 +16,8 @@ public class StorageInformationPanel extends javax.swing.JPanel {
     final JFileChooser fc = new JFileChooser();
     FileFilter filter = new FileNameExtensionFilter(".pf file","pf");
     
-    File f = null;
+    File f1 = null;
+    File f2 = null;
     
     public StorageInformationPanel() {
         initComponents();
@@ -181,17 +183,69 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         jRadioButton1.setSelected(true);
         fc.setFileFilter(filter);
         fc.showOpenDialog(this.getRootPane());
-        f = fc.getSelectedFile();
+        f1 = fc.getSelectedFile();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         jRadioButton2.setSelected(true);
         fc.removeChoosableFileFilter(filter);
         fc.showSaveDialog(this.getRootPane());
-        f = fc.getCurrentDirectory();
+        f2 = fc.getCurrentDirectory();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-
+    public int getProblems() {        
+        
+        if (jRadioButton1.isSelected()) {
+            // no file1 selected
+            if (f1 == null) {
+                return 1;
+            }
+            // psw1 == null
+            else if (this.getPsw1().equals("[]")) {
+                return 3;
+            }
+            // all is good
+            else {
+                return 0;
+            }  
+        }
+        else {
+            // no folder selected
+            if (f2 == null) {
+                return 2;
+            }
+            // psw1 == null || psw2 == null;
+            else if (this.getPsw2().equals("[]") || this.getPsw3().equals("[]")) {
+                return 4;
+            }
+            // psw1 != psw2
+            else if (!this.getPsw2().equals(this.getPsw3())) {
+                return 5;
+            }
+            // the passphrase is too short
+            else if (this.getPsw2().length() < 8) {
+                return 6;
+            }
+            // all is good
+            else {
+                return 0;
+            }
+        }
+    }
+    
+    private String getPsw1 () {
+        return Arrays.toString(jPasswordField3.getPassword());
+    }
+    
+    private String getPsw2 () {
+        return Arrays.toString(jPasswordField4.getPassword());
+    }
+    
+    private String getPsw3 () {
+        return Arrays.toString(jPasswordField5.getPassword());
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
