@@ -17,6 +17,7 @@ public class AddFrame extends javax.swing.JFrame {
         
         pip.setVisible(true);
         sip.setVisible(false);
+        jButton3.show(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -87,31 +88,41 @@ public class AddFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        switch (pip.getProblems()) {
-            case 0:
-                // all is good
-                pip.setVisible(false);
-                sip.setVisible(true);
-                jButton1.setText("Save");
-                break;
-            case 1:                
-                // no password/s inserted
-                JOptionPane.showMessageDialog(rootPane, "Please insert both passwords!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                break;
-            case 2:
-                // passwords don't match
-                JOptionPane.showMessageDialog(rootPane, "The passwords inserted don't match!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                break;
-            case 3:
-                // no username and email
-                JOptionPane.showMessageDialog(rootPane, "Please fill username or email field!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                break;
-        }        
+        if (jButton1.getText().equals("Next ->")) {
+            // first input check
+            switch (pip.getProblems()) {
+                case 0:
+                    // all is good
+                    pip.setVisible(false);
+                    sip.setVisible(true);
+                    jButton1.setText("Save");
+                    jButton3.setVisible(true);
+                    break;
+                case 1:                
+                    // no password/s inserted
+                    JOptionPane.showMessageDialog(rootPane, "Please insert both passwords!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    break;
+                case 2:
+                    // passwords don't match
+                    JOptionPane.showMessageDialog(rootPane, "The passwords inserted don't match!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    break;
+                case 3:
+                    // no username and email
+                    JOptionPane.showMessageDialog(rootPane, "Please fill username or email field!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }            
+        }
+        else {
+            // second input check
+            // controllare sip
+        }
+                
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         sip.setVisible(false);
         pip.setVisible(true);
+        jButton3.setVisible(false);
         jButton1.setText("Next ->");        
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -32,11 +32,15 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jLabel2.setText("Password information:");
 
+        jPasswordField1.setText("aa");
+
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Add new password");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel5.setText("E-mail:");
+
+        jTextField3.setText("a");
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel6.setText("Password:");
@@ -46,6 +50,8 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel4.setText("Username/ID:");
+
+        jPasswordField2.setText("aa");
 
         jSeparator2.setForeground(new java.awt.Color(153, 153, 153));
 
