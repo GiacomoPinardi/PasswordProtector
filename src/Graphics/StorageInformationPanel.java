@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package passwordprotector;
+package Graphics;
 
 import java.io.File;
 import java.util.Arrays;
@@ -70,8 +70,12 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel12.setText("Passphrase:");
 
+        jPasswordField4.setText("12345678");
+
         jLabel13.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel13.setText("Repeat passphrase:");
+
+        jPasswordField5.setText("12345678");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jLabel8.setText("Storage information:");
@@ -175,7 +179,7 @@ public class StorageInformationPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPasswordField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -190,7 +194,7 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         jRadioButton2.setSelected(true);
         fc.removeChoosableFileFilter(filter);
         fc.showSaveDialog(this.getRootPane());
-        f2 = fc.getCurrentDirectory();
+        f2 = fc.getSelectedFile();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public int getProblems() {        
@@ -243,6 +247,28 @@ public class StorageInformationPanel extends javax.swing.JPanel {
     
     private String getPsw3 () {
         return Arrays.toString(jPasswordField5.getPassword());
+    }
+    
+    public boolean getAction () {
+        return jRadioButton1.isSelected();
+    }
+    
+    public File getFile () {
+        if (jRadioButton1.isSelected()) {
+            return f1;
+        }
+        else {
+            return f2;
+        }
+    }
+    
+    public String getPassphrase () {
+        if (jRadioButton1.isSelected()) {
+            return this.getPsw1();
+        }
+        else {
+            return this.getPsw2();
+        }
     }
     
     

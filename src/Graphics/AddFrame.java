@@ -1,13 +1,26 @@
 
-package passwordprotector;
+package Graphics;
 
 import java.awt.BorderLayout;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import javax.swing.JOptionPane;
+import passwordprotector.Password;
+import passwordprotector.PasswordFolder;
 
 public class AddFrame extends javax.swing.JFrame {
     
-    PasswordInformationPanel pip = new PasswordInformationPanel(); 
-    StorageInformationPanel sip = new StorageInformationPanel();      
+    private  PasswordInformationPanel pip = new PasswordInformationPanel(); 
+    private StorageInformationPanel sip = new StorageInformationPanel();      
+    
+    private FileOutputStream fileOut = null;
+    private FileInputStream fileIn = null;
+    private ObjectOutputStream outObj = null;
+    private ObjectInputStream inObj = null;
     
     public AddFrame() {
         initComponents();
@@ -72,7 +85,7 @@ public class AddFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(313, Short.MAX_VALUE)
+                .addContainerGap(323, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -85,6 +98,10 @@ public class AddFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
+        this.pip.setVisible(true);
+        this.sip.setVisible(false);
+        jButton1.setText("Next ->");
+        jButton3.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -117,7 +134,28 @@ public class AddFrame extends javax.swing.JFrame {
             switch (sip.getProblems()) {
                 case 0:
                     // all is good
-                    // ----------------------------------------------    <---
+                    
+                    // create a new Object Password
+                    Password psw = new Password(pip.getUsername(), pip.getEmail(), pip.getWebsite(), pip.getDescription(), pip.getPassword());
+                    // get the path of the file
+                    String path = sip.getFile().getAbsolutePath();
+                    
+                    if (sip.getAction()) {
+                        // add to existing PasswordFolder
+                        this.addToExisting(psw, path);
+                    }
+                    else {
+                        // create a new PasswordFolder
+                        PasswordFolder passfold = new PasswordFolder();
+                        passfold.add(psw);
+                        
+                        if (this.createNew(passfold, path)) {
+                            JOptionPane.showMessageDialog(rootPane, "Successfully created a new PasswordFolder in:\n" + path, "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(rootPane, "Can not create a new PasswordFolder!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
                     break;
                 case 1:
                     // no file1 selected
@@ -169,6 +207,65 @@ public class AddFrame extends javax.swing.JFrame {
         this.add(sip);
         this.pack();
         this.setTitle("Password Protector - Storage Info");
+    }
+    
+    private boolean addToExisting (Password p, String location) {
+        try {            
+            fileIn = new FileInputStream(location);
+            inObj = new ObjectInputStream(fileIn);
+            PasswordFolder pf = (PasswordFolder) inObj.readObject();
+            inObj.close();
+            fileIn.close();
+            
+            pf.add(p);
+            
+            fileOut = new FileOutputStream(location);
+            outObj = new ObjectOutputStream(fileOut);
+            outObj.writeObject(pf);
+            outObj.close();
+            fileOut.close();
+            
+            return true;
+        }
+        catch (IOException | ClassNotFoundException ex) {
+            return false;
+        }
+    }
+    
+    private boolean createNew (PasswordFolder pf, String location) {       
+        try {
+            fileOut = new FileOutputStream(location);
+            outObj = new ObjectOutputStream(fileOut);
+            outObj.writeObject(pf);
+            outObj.close();
+            fileOut.close();
+            return true;
+        }         
+        catch (IOException ex) {            
+            return false;
+        }
+        
+    }
+    
+    // DEBUG
+    
+    private void read (PasswordFolder pf) {
+        Password p1 = pf.get(0);
+        Password p2 = pf.get(1);
+        
+        System.out.println("P1: ");
+        System.out.println(p1.getDescription());
+        System.out.println(p1.getEmail());
+        System.out.println(p1.getPassword());
+        System.out.println(p1.getUsername());
+        System.out.println(p1.getWebsite());
+        
+        System.out.println("P2: ");
+        System.out.println(p2.getDescription());
+        System.out.println(p2.getEmail());
+        System.out.println(p2.getPassword());
+        System.out.println(p2.getUsername());
+        System.out.println(p2.getWebsite());
     }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables

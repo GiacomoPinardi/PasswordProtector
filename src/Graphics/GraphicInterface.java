@@ -1,5 +1,5 @@
 
-package passwordprotector;
+package Graphics;
 
 public class GraphicInterface extends javax.swing.JFrame {
 

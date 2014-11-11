@@ -1,5 +1,5 @@
 
-package passwordprotector;
+package Graphics;
 
 import java.util.Arrays;
 
@@ -28,21 +28,21 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
 
+        jTextField2.setText("12");
+
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel7.setText("Repeat password:");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jLabel2.setText("Password information:");
 
-        jPasswordField1.setText("aa");
+        jPasswordField1.setText("a");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Add new password");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel5.setText("E-mail:");
-
-        jTextField3.setText("a");
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel6.setText("Password:");
@@ -53,7 +53,7 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel4.setText("Username/ID:");
 
-        jPasswordField2.setText("aa");
+        jPasswordField2.setText("a");
 
         jSeparator2.setForeground(new java.awt.Color(153, 153, 153));
 
@@ -141,7 +141,7 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -172,6 +172,25 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         return Arrays.toString(jPasswordField2.getPassword());
     }
     
+    public String getDescription () {
+        return jTextField1.getText();
+    }
+    
+    public String getWebsite () {
+        return jTextField4.getText();
+    }
+    
+    public String getUsername () {
+        return jTextField2.getText();
+    }
+    
+    public String getEmail () {
+        return jTextField3.getText();
+    }
+    
+    public String getPassword () {
+        return this.getPsw1();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

@@ -1,6 +1,8 @@
 
 package passwordprotector;
 
+import Graphics.GraphicInterface;
+
 public class PasswordProtector {
 
     
