@@ -100,8 +100,8 @@ public class AddFrame extends javax.swing.JFrame {
         this.dispose();
         this.pip.setVisible(true);
         this.sip.setVisible(false);
-        jButton1.setText("Next ->");
         jButton3.setVisible(false);
+        jButton1.setText("Next ->");        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
