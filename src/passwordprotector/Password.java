@@ -7,20 +7,18 @@ public class Password implements Serializable {
     
     private String username;
     private String email;
-    private String website;
     private String description;
+    private String website;    
     private String password;
     
-    public Password (String username, String email, String website, String description, String password) {
+    public Password (String username, String email, String description, String website, String password) {
         Encryptor encry = new Encryptor();
         
         this.username = username;
         this.email = email;
         this.description = description;
-        this.website = website;
-        
+        this.website = website;        
         this.password = password;
-        password = null;        
     }
 
     public String getUsername() {

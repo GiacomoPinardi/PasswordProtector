@@ -2,7 +2,6 @@
 package Graphics;
 
 import java.awt.BorderLayout;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -210,22 +209,20 @@ public class AddFrame extends javax.swing.JFrame {
     }
     
     private boolean addToExisting (Password p, String location) {
-        try {            
+        try {  
             fileIn = new FileInputStream(location);
             inObj = new ObjectInputStream(fileIn);
+            
             PasswordFolder pf = (PasswordFolder) inObj.readObject();
+            
             inObj.close();
             fileIn.close();
             
             pf.add(p);
             
-            fileOut = new FileOutputStream(location);
-            outObj = new ObjectOutputStream(fileOut);
-            outObj.writeObject(pf);
-            outObj.close();
-            fileOut.close();
+            boolean b = this.createNew(pf, location);
             
-            return true;
+            return (true && b);
         }
         catch (IOException | ClassNotFoundException ex) {
             return false;
