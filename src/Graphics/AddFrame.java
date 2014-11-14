@@ -23,7 +23,8 @@ public class AddFrame extends javax.swing.JFrame {
     
     public AddFrame() {
         initComponents();
-        
+        this.setTitle("Password Information & Storage");
+
         this.initPasswordPanel();
         this.initStoragePanel();
         
@@ -197,7 +198,6 @@ public class AddFrame extends javax.swing.JFrame {
         //this.add(pip, BorderLayout.CENTER);
         this.add(pip);
         this.pack();
-        this.setTitle("Password Protector - Password Info");
     }
     
     private void initStoragePanel () {        
@@ -205,7 +205,6 @@ public class AddFrame extends javax.swing.JFrame {
         //this.add(pip, BorderLayout.CENTER);
         this.add(sip);
         this.pack();
-        this.setTitle("Password Protector - Storage Info");
     }
     
     private boolean addToExisting (Password p, String location) {
@@ -251,18 +250,18 @@ public class AddFrame extends javax.swing.JFrame {
         Password p2 = pf.get(1);
         
         System.out.println("P1: ");
-        System.out.println(p1.getDescription());
-        System.out.println(p1.getEmail());
-        System.out.println(p1.getPassword());
-        System.out.println(p1.getUsername());
-        System.out.println(p1.getWebsite());
+        System.out.println(p1.getInfo(0));
+        System.out.println(p1.getInfo(1));
+        System.out.println(p1.getInfo(2));
+        System.out.println(p1.getInfo(3));
+        System.out.println(p1.getInfo(4));
         
         System.out.println("P2: ");
-        System.out.println(p2.getDescription());
-        System.out.println(p2.getEmail());
-        System.out.println(p2.getPassword());
-        System.out.println(p2.getUsername());
-        System.out.println(p2.getWebsite());
+        System.out.println(p2.getInfo(0));
+        System.out.println(p2.getInfo(1));
+        System.out.println(p2.getInfo(2));
+        System.out.println(p2.getInfo(3));
+        System.out.println(p2.getInfo(4));
     }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables

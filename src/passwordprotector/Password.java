@@ -21,26 +21,14 @@ public class Password implements Serializable {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getInfo(int index) {
+        switch (index) {
+            case 0: return username;
+            case 1: return email;
+            case 2: return description;
+            case 3: return website;
+            case 4: return password;
+            default: return null;
+        }
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-    
-    
-    
 }

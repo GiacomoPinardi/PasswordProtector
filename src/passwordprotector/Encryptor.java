@@ -3,31 +3,22 @@ package passwordprotector;
 
 public class Encryptor {
     
-    public Password encryptThis (Password unencrypted) {
-        String usr = unencrypted.getUsername();
-        String eml = unencrypted.getEmail();
-        String des = unencrypted.getDescription();        
-        String web = unencrypted.getWebsite();
-        String psw = unencrypted.getPassword();
+    public Password encryptThisPassword (Password unencrypted, String passphrase) {
         
-        usr = this.toBits(usr);
-        eml = this.toBits(eml);
-        des = this.toBits(des);
-        web = this.toBits(web);
-        psw = this.toBits(psw);
+        String[] info = new String[5];
         
-        System.out.println("usr: " + usr);
-        System.out.println("eml: " + eml);
-        System.out.println("des: " + des);
-        System.out.println("web: " + web);
-        System.out.println("psw: " + psw);
+        for (int i = 0; i < info.length; i++) {
+            info[i] = this.toBits(unencrypted.getInfo(i));
+        }
         
-        return new Password (null,null,null,null,null);
+        String psp = this.toBits(passphrase);
         
+        String[] encrypted = this.encryptThisBits(info, psp);
+        
+        return new Password (encrypted[0], encrypted[1], encrypted[2], encrypted[3], encrypted[4]);        
     }
     
-    private String toBits (String word) {                
-        
+    private String toBits (String word) {              
         int k;
         String s;
         String result = "";
@@ -43,27 +34,44 @@ public class Encryptor {
             }
             result = result.concat(s);
         }
-        
+        System.out.println(result);
         return result;
-        /*
-        String result = "";
-        String sc;
-        int bits;
-        char c;
-        
-        
-        for (int i = 0; i < word.length(); i++) {
-            c = word.charAt(i);
-            sc = Character.toString(c);
-            bits = sc.hashCode();
-            //result = result.concat(String.format("%08d", 12));
-            result = result.concat(";" + Integer.toBinaryString(bits));
-            //result = result.concat(Integer.toBinaryString(bits));
+    }
+    
+    private String[] encryptThisBits (String info[], String psp) {
+        // info crypted using XOR and the passphrase
+        String[] crpd = new String[5];
+        for (int i = 0; i < crpd.length; i++) {
+            crpd[i] = "";
         }
         
+        int pspCounter = 0;
+        int maxLenght = psp.length();
         
-        return result;
-                */
+        for (int i = 0; i < info.length; i++) {
+            String currentWord = info[i];
+              
+            for (int j = 0; j < currentWord.length(); j++) {
+                char c = currentWord.charAt(j);
+                char p = psp.charAt(pspCounter);
+                
+                String result;
+                if (c == p) {
+                    result = "0";
+                }
+                else {
+                    result = "1";
+                }
+                crpd[i] = crpd[i].concat(result);
+                
+                pspCounter ++;
+                if (pspCounter >= maxLenght) {
+                    pspCounter = 0;
+                }
+            }
+            
+        }
+        return crpd;
     }
     
 }
