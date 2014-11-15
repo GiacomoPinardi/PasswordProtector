@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Graphics;
+package graphics;
 
 import java.io.File;
 import java.util.Arrays;
@@ -70,12 +70,8 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel12.setText("Passphrase:");
 
-        jPasswordField4.setText("12345678");
-
         jLabel13.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel13.setText("Repeat passphrase:");
-
-        jPasswordField5.setText("12345678");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jLabel8.setText("Storage information:");

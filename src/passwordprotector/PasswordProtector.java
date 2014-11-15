@@ -1,7 +1,7 @@
 
 package passwordprotector;
 
-import Graphics.GraphicInterface;
+import graphics.GraphicInterface;
 
 public class PasswordProtector {
 
@@ -13,7 +13,8 @@ public class PasswordProtector {
         
         // DEBUG:
         
-        Encryptor e = new Encryptor();
+        //Encryptor e = new Encryptor();
+        
         /*
         Password unE = new Password("Giacomo", "giacki8@libero.it", "La password dell'account Origin", "www.origin.org", "prova1234#");
         Password E = e.encryptThisPassword(unE, "prova");
