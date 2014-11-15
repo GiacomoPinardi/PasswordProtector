@@ -14,7 +14,7 @@ public class PasswordProtector {
         // DEBUG:
         
         Encryptor e = new Encryptor();
-        
+        /*
         Password unE = new Password("Giacomo", "giacki8@libero.it", "La password dell'account Origin", "www.origin.org", "prova1234#");
         Password E = e.encryptThisPassword(unE, "prova");
         
@@ -22,7 +22,17 @@ public class PasswordProtector {
             System.out.println("UnE: " + unE.getInfo(i));
             System.out.println("E: " + E.getInfo(i));
         }
+        */
         
+        /*
+        Password unE = new Password("a", "b", "c", "&", "_");
+        Password E = e.encryptThisPassword(unE, "df");
+        
+        for (int i = 0; i < 5; i++) {
+            System.out.println("UnE: " + unE.getInfo(i));
+            System.out.println("E: " + E.getInfo(i));
+        }
+        */
     }
     
 }

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import javax.swing.JOptionPane;
+import passwordprotector.Encryptor;
 import passwordprotector.Password;
 import passwordprotector.PasswordFolder;
 
@@ -20,6 +21,8 @@ public class AddFrame extends javax.swing.JFrame {
     private FileInputStream fileIn = null;
     private ObjectOutputStream outObj = null;
     private ObjectInputStream inObj = null;
+    
+    Encryptor enc = new Encryptor();
     
     public AddFrame() {
         initComponents();
@@ -136,18 +139,22 @@ public class AddFrame extends javax.swing.JFrame {
                     // all is good
                     
                     // create a new Object Password
-                    Password psw = new Password(pip.getUsername(), pip.getEmail(), pip.getWebsite(), pip.getDescription(), pip.getPassword());
+                    Password pswUnencrypted = new Password(pip.getUsername(), pip.getEmail(), pip.getWebsite(), pip.getDescription(), pip.getPassword());
+                    
+                    // encrypt the password
+                    Password pswCrypted = enc.encryptThisPassword(pswUnencrypted, sip.getPassphrase());
+
                     // get the path of the file
                     String path = sip.getFile().getAbsolutePath();
                     
                     if (sip.getAction()) {
                         // add to existing PasswordFolder
-                        this.addToExisting(psw, path);
+                        this.addToExisting(pswCrypted, path);
                     }
                     else {
                         // create a new PasswordFolder
                         PasswordFolder passfold = new PasswordFolder();
-                        passfold.add(psw);
+                        passfold.add(pswCrypted);
                         
                         if (this.createNew(passfold, path)) {
                             JOptionPane.showMessageDialog(rootPane, "Successfully created a new PasswordFolder in:\n" + path, "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
