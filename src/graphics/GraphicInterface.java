@@ -4,6 +4,7 @@ package graphics;
 public class GraphicInterface extends javax.swing.JFrame {
 
     AddFrame af = new AddFrame();
+    OpenFrame of = new OpenFrame();
     
     public GraphicInterface() {
         initComponents();
@@ -48,6 +49,11 @@ public class GraphicInterface extends javax.swing.JFrame {
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Open Password Folder");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -94,6 +100,10 @@ public class GraphicInterface extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         af.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        of.show();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     
     

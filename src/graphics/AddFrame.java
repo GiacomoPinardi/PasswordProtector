@@ -248,28 +248,7 @@ public class AddFrame extends javax.swing.JFrame {
             return false;
         }
         
-    }
-    
-    // DEBUG
-    
-    private void read (PasswordFolder pf) {
-        Password p1 = pf.get(0);
-        Password p2 = pf.get(1);
-        
-        System.out.println("P1: ");
-        System.out.println(p1.getInfo(0));
-        System.out.println(p1.getInfo(1));
-        System.out.println(p1.getInfo(2));
-        System.out.println(p1.getInfo(3));
-        System.out.println(p1.getInfo(4));
-        
-        System.out.println("P2: ");
-        System.out.println(p2.getInfo(0));
-        System.out.println(p2.getInfo(1));
-        System.out.println(p2.getInfo(2));
-        System.out.println(p2.getInfo(3));
-        System.out.println(p2.getInfo(4));
-    }
+    }    
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
