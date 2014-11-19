@@ -148,8 +148,8 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         else if (!this.getPsw1().equals(this.getPsw2())) {
             return 2;
         }
-        // must fill username or email field
-        else if (jTextField2.getText().equals("") && jTextField3.getText().equals("")) {
+        // must fill description field
+        else if (jTextField1.getText().equals("")) {
             return 3;
         }
         // all si good

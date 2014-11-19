@@ -127,8 +127,8 @@ public class AddFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "The passwords inserted don't match!", "ERROR", JOptionPane.ERROR_MESSAGE);
                     break;
                 case 3:
-                    // no username and email
-                    JOptionPane.showMessageDialog(rootPane, "Please fill username or email field!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    // no description
+                    JOptionPane.showMessageDialog(rootPane, "Please fill description field!", "ERROR", JOptionPane.ERROR_MESSAGE);
                     break;
             }            
         }

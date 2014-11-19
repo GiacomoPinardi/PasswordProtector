@@ -26,7 +26,7 @@ public class Encryptor {
         return new Password (encrypted[0], encrypted[1], encrypted[2], encrypted[3], encrypted[4]);        
     }
     
-    private String toBits (String word) {              
+    public String toBits (String word) {              
         int k;
         String s;
         String result = "";
@@ -42,7 +42,6 @@ public class Encryptor {
             }
             result = result.concat(s);
         }
-        System.out.println(result);
         return result;
     }
     
@@ -105,7 +104,15 @@ public class Encryptor {
         }
     }
     
-    private PasswordFolder decryptThisPasswordFolder (PasswordFolder pf, String passphrase) {
+    
+    
+    
+    
+    
+    // rimettere private ai public che non lo devono essere
+    
+    
+    public PasswordFolder decryptThisPasswordFolder (PasswordFolder pf, String passphrase) {
         
         PasswordFolder decrypted = new PasswordFolder();
         Password p = null;
@@ -120,29 +127,72 @@ public class Encryptor {
     private Password decryptThisPassword (Password p, String passphrase) {
         
         Password decrypted;
-        String[] infoDec = new String[5];
+        String info[] = new String[5];
+        String[] infoDecBit;
+        String[] infoDecTxt = new String[5];
                 
         for (int i = 0; i < 5; i++) {
-            infoDec[i] = this.decryptThisString(p.getInfo(i), passphrase);
+            info[i] = p.getInfo(i);
         }
         
-        decrypted = new Password(infoDec[0], infoDec[1], infoDec[2], infoDec[3], infoDec[4]);
+        infoDecBit = this.decryptThisByts(info, passphrase);                
+        
+        for (int i = 0; i < infoDecBit.length; i++) {
+            infoDecTxt[i] = this.toText(infoDecBit[i]);
+        }
+        
+        decrypted = new Password(infoDecTxt[0], infoDecTxt[1], infoDecTxt[2], infoDecTxt[3], infoDecTxt[4]);
         
         return decrypted;
     }
     
-    private String decryptThisString (String s, String psp) {
+    private String[] decryptThisByts (String info[], String psp) {
+        // info decrypted using XOR and the passphrase
         String passphrase = this.toBits(psp);
-        String decrypted = "";
+        String[] infoDec = new String[5];
         
-        String subS = null;
-        
-        for (int i = 0; i < (s.length()/8); i++) {
-            subS = s.substring(i*8, (i+1)*8);
-            // subS = 01000101, cioe' una lettera
-            
+        for (int i = 0; i < infoDec.length; i++) {
+            infoDec[i] = "";
         }
         
-        return decrypted;
+        int counter = 0;
+        int maxLenght = passphrase.length();
+        
+        for (int i = 0; i < info.length; i++) {         
+            for (int j = 0; j < info[i].length(); j++) {
+                char c = info[i].charAt(j);
+                char p = passphrase.charAt(counter);
+                
+                String result;
+                if (c == p) {
+                    result = "0";
+                }
+                else {
+                    result = "1";
+                }
+                infoDec[i] = infoDec[i].concat(result);
+                
+                counter ++;
+                if (counter >= maxLenght) {
+                    counter = 0;
+                }
+            }           
+        }
+        return infoDec;
+    }
+    
+    public String toText (String bits) {
+        
+        String word = "";
+        String subS = null;
+        char c;
+        
+        for (int i = 0; i < (bits.length()/8); i++) {
+            subS = bits.substring(i*8, ((i+1)*8));
+            c = ((char) Integer.parseInt(subS, 2));
+            word = word + c;
+        }
+        
+        return word;
     }
 }
