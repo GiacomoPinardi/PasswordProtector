@@ -7,11 +7,17 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import passwordprotector.Encryptor;
+import passwordprotector.PasswordFolder;
 
 public class OpenFrame extends javax.swing.JFrame {
     
     final JFileChooser fc = new JFileChooser();
     FileFilter filter = new FileNameExtensionFilter(".pf file","pf");
+    
+    Encryptor enc = new Encryptor();
+    
+    //GraphicInterface GUI = new GraphicInterface();
     
     File f1 = null;
     
@@ -163,9 +169,10 @@ public class OpenFrame extends javax.swing.JFrame {
             else {
                 // all is good
                 
-                //----> OPEN AND DECRYPT THE PF FILE
-                
-            }
+                PasswordFolder decrypted = enc.decryptThisFile(f1, this.getPassphrase());
+                //GUI.loadPasswordFolder(decrypted);
+                this.dispose();                
+            }              
         }
         else {
             // no file chose

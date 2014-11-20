@@ -145,11 +145,17 @@ public class AddFrame extends javax.swing.JFrame {
                     Password pswCrypted = enc.encryptThisPassword(pswUnencrypted, sip.getPassphrase());
 
                     // get the path of the file
-                    String path = sip.getFile().getAbsolutePath();
+                    String path = sip.getPath();
                     
                     if (sip.getAction()) {
                         // add to existing PasswordFolder
-                        this.addToExisting(pswCrypted, path);
+                        if (this.addToExisting(pswCrypted, path)) {
+                            JOptionPane.showMessageDialog(rootPane, "Successfully added a new Password in:\n" + path, "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                            this.dispose();
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(rootPane, "Can not add new Password in:\n!" + path, "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
                     else {
                         // create a new PasswordFolder
@@ -158,6 +164,7 @@ public class AddFrame extends javax.swing.JFrame {
                         
                         if (this.createNew(passfold, path)) {
                             JOptionPane.showMessageDialog(rootPane, "Successfully created a new PasswordFolder in:\n" + path, "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                            this.dispose();
                         }
                         else {
                             JOptionPane.showMessageDialog(rootPane, "Can not create a new PasswordFolder!", "ERROR", JOptionPane.ERROR_MESSAGE);

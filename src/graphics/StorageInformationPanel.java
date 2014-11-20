@@ -249,12 +249,12 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         return jRadioButton1.isSelected();
     }
     
-    public File getFile () {
+    public String getPath () {
         if (jRadioButton1.isSelected()) {
-            return f1;
+            return f1.getAbsolutePath();
         }
         else {
-            return f2;
+            return (f2.getAbsolutePath() + ".pf");
         }
     }
     

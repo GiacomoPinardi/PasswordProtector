@@ -1,6 +1,8 @@
 
 package graphics;
 
+import passwordprotector.PasswordFolder;
+
 public class GraphicInterface extends javax.swing.JFrame {
 
     AddFrame af = new AddFrame();
@@ -105,7 +107,9 @@ public class GraphicInterface extends javax.swing.JFrame {
         of.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    
+    public void loadPasswordFolder (PasswordFolder pf) {
+        
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

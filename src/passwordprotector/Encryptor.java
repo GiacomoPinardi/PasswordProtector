@@ -26,7 +26,8 @@ public class Encryptor {
         return new Password (encrypted[0], encrypted[1], encrypted[2], encrypted[3], encrypted[4]);        
     }
     
-    public String toBits (String word) {              
+    private String toBits (String word) {
+        
         int k;
         String s;
         String result = "";
@@ -104,15 +105,7 @@ public class Encryptor {
         }
     }
     
-    
-    
-    
-    
-    
-    // rimettere private ai public che non lo devono essere
-    
-    
-    public PasswordFolder decryptThisPasswordFolder (PasswordFolder pf, String passphrase) {
+    private PasswordFolder decryptThisPasswordFolder (PasswordFolder pf, String passphrase) {
         
         PasswordFolder decrypted = new PasswordFolder();
         Password p = null;
@@ -181,7 +174,7 @@ public class Encryptor {
         return infoDec;
     }
     
-    public String toText (String bits) {
+    private String toText (String bits) {
         
         String word = "";
         String subS = null;
