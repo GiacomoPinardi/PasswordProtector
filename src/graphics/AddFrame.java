@@ -88,7 +88,7 @@ public class AddFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(323, Short.MAX_VALUE)
+                .addContainerGap(333, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -100,11 +100,7 @@ public class AddFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-        this.pip.setVisible(true);
-        this.sip.setVisible(false);
-        jButton3.setVisible(false);
-        jButton1.setText("Next ->");        
+        this.specialDispose();    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -151,7 +147,7 @@ public class AddFrame extends javax.swing.JFrame {
                         // add to existing PasswordFolder
                         if (this.addToExisting(pswCrypted, path)) {
                             JOptionPane.showMessageDialog(rootPane, "Successfully added a new Password in:\n" + path, "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                            this.dispose();
+                            this.specialDispose();
                         }
                         else {
                             JOptionPane.showMessageDialog(rootPane, "Can not add new Password in:\n!" + path, "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -164,7 +160,7 @@ public class AddFrame extends javax.swing.JFrame {
                         
                         if (this.createNew(passfold, path)) {
                             JOptionPane.showMessageDialog(rootPane, "Successfully created a new PasswordFolder in:\n" + path, "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
-                            this.dispose();
+                            this.specialDispose();
                         }
                         else {
                             JOptionPane.showMessageDialog(rootPane, "Can not create a new PasswordFolder!", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -256,6 +252,16 @@ public class AddFrame extends javax.swing.JFrame {
         }
         
     }    
+    
+    private void specialDispose () {
+        this.dispose();
+        this.pip.setVisible(true);
+        this.sip.setVisible(false);
+        jButton3.setVisible(false);
+        jButton1.setText("Next ->");  
+        pip.resetFields();
+        sip.resetFields();
+    }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

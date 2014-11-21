@@ -175,7 +175,7 @@ public class StorageInformationPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPasswordField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -254,8 +254,14 @@ public class StorageInformationPanel extends javax.swing.JPanel {
             return f1.getAbsolutePath();
         }
         else {
-            return (f2.getAbsolutePath() + ".pf");
-        }
+            String n = f2.getAbsolutePath();
+            if (n.substring(n.length()-3, n.length()).equalsIgnoreCase(".pf")) {
+                return n;
+            }
+            else {               
+                return (n + ".pf");
+            }
+        }                
     }
     
     public String getPassphrase () {
@@ -267,6 +273,14 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         }
     }
     
+    public void resetFields () {
+        jPasswordField3.setText("");
+        jPasswordField4.setText("");
+        jPasswordField5.setText("");
+        f1 = null;
+        f2 = null;
+        jRadioButton1.setSelected(true);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

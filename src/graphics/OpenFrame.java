@@ -17,7 +17,7 @@ public class OpenFrame extends javax.swing.JFrame {
     
     Encryptor enc = new Encryptor();
     
-    //GraphicInterface GUI = new GraphicInterface();
+    PasswordFolder decrypted = null;
     
     File f1 = null;
     
@@ -167,11 +167,10 @@ public class OpenFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "The passphrase inserted is too short!\nUse at least 8 characters.", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
             else {
-                // all is good
-                
-                PasswordFolder decrypted = enc.decryptThisFile(f1, this.getPassphrase());
-                //GUI.loadPasswordFolder(decrypted);
-                this.dispose();                
+                // all is good                
+                decrypted = enc.decryptThisFile(f1, this.getPassphrase());
+                JOptionPane.showMessageDialog(rootPane, "Successfully decrypted PasswordFolder from:\n" + f1.getAbsolutePath() + "\n\nPush on 'Show Data' in Action menu to load your information.", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                this.specialDispose();                
             }              
         }
         else {
@@ -182,6 +181,16 @@ public class OpenFrame extends javax.swing.JFrame {
 
     public String getPassphrase () {
         return Arrays.toString(jPasswordField3.getPassword());
+    }
+    
+    public PasswordFolder getDecrypted(){
+        return this.decrypted;
+    }
+    
+    private void specialDispose () {
+        this.dispose();
+        f1 = null;
+        jPasswordField3.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
