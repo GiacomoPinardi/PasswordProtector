@@ -34,6 +34,8 @@ public class AddFrame extends javax.swing.JFrame {
         pip.setVisible(true);
         sip.setVisible(false);
         jButton3.show(false);
+        
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")

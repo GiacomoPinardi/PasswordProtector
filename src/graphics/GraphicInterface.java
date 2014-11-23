@@ -1,12 +1,15 @@
 
 package graphics;
 
+import javax.swing.JOptionPane;
 import passwordprotector.PasswordFolder;
 
 public class GraphicInterface extends javax.swing.JFrame {
 
     AddFrame af = new AddFrame();
     OpenFrame of = new OpenFrame();
+    OpenDialog ofp = new OpenDialog(this,true);
+
     
     PasswordFolder pf = null;
     
@@ -22,6 +25,8 @@ public class GraphicInterface extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -41,6 +46,8 @@ public class GraphicInterface extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
 
+        jScrollPane1.setViewportView(jList1);
+
         jMenu1.setText("Action");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
@@ -52,8 +59,8 @@ public class GraphicInterface extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Open Password Folder");
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("Load Password Folder");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -63,6 +70,11 @@ public class GraphicInterface extends javax.swing.JFrame {
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem3.setText("Show Data");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -83,14 +95,19 @@ public class GraphicInterface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(jLabel1)
-                        .addGap(0, 27, Short.MAX_VALUE)))
+                        .addGap(0, 27, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jSeparator1))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -102,7 +119,9 @@ public class GraphicInterface extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,16 +132,47 @@ public class GraphicInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        of.show();
+        PasswordFolder prova = ofp.showAndReturn();
+        
+        System.out.println("passato");
+        
+        if (prova == null) {
+            System.out.println("cancel premuto");
+        }
+        else {
+            System.out.println("open premuto");
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    public void loadPasswordFolder (PasswordFolder pf) {
-        
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        if (this.showPasswordFolder()) {
+            // All is good
+            String[] description = new String[pf.size()];
+            for (int i = 0; i < description.length; i++) {
+                description[i] = pf.get(i).getInfo(3);
+            }            
+            
+            jList1.setListData(description);
+        }
+        else {
+            JOptionPane.showMessageDialog(rootPane, "Can not show data!\nPlease make sure you have loaded \nPasswordFolder correctly.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    public boolean showPasswordFolder () {
+        pf = of.getDecrypted();      
+        if (pf != null) {
+            return true;
+        }
+        else {            
+            return false;
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JList jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -130,6 +180,7 @@ public class GraphicInterface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
