@@ -165,12 +165,22 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         }
     }
     
-    private String getPsw1 () {
-        return Arrays.toString(jPasswordField1.getPassword());
+    private String getPsw1 () {        
+        char c[] = jPasswordField1.getPassword();
+        String s = "";
+        for (int i = 0; i < c.length; i++) {
+            s = s +c [i];
+        }
+        return s;
     }
     
     private String getPsw2 () {
-        return Arrays.toString(jPasswordField2.getPassword());
+        char c[] = jPasswordField2.getPassword();
+        String s = "";
+        for (int i = 0; i < c.length; i++) {
+            s = s +c [i];
+        }
+        return s;
     }
     
     public String getDescription () {

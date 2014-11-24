@@ -234,15 +234,30 @@ public class StorageInformationPanel extends javax.swing.JPanel {
     }
     
     private String getPsw1 () {
-        return Arrays.toString(jPasswordField3.getPassword());
+        char c[] = jPasswordField3.getPassword();
+        String s = "";
+        for (int i = 0; i < c.length; i++) {
+            s = s +c [i];
+        }
+        return s;
     }
     
     private String getPsw2 () {
-        return Arrays.toString(jPasswordField4.getPassword());
+        char c[] = jPasswordField4.getPassword();
+        String s = "";
+        for (int i = 0; i < c.length; i++) {
+            s = s +c [i];
+        }
+        return s;
     }
     
     private String getPsw3 () {
-        return Arrays.toString(jPasswordField5.getPassword());
+        char c[] = jPasswordField5.getPassword();
+        String s = "";
+        for (int i = 0; i < c.length; i++) {
+            s = s +c [i];
+        }
+        return s;
     }
     
     public boolean getAction () {
