@@ -2,6 +2,7 @@
 package graphics;
 
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import passwordprotector.PasswordFolder;
 
 public class GraphicInterface extends javax.swing.JFrame {
@@ -9,6 +10,8 @@ public class GraphicInterface extends javax.swing.JFrame {
     AddFrame af = new AddFrame();
     OpenDialog ofp = new OpenDialog(this,true);
     PasswordDetailsDialog pid = new PasswordDetailsDialog(this, true);
+    
+    PasswordFolder decrypted = null;
     
     public GraphicInterface() {
         initComponents();
@@ -31,6 +34,8 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -75,6 +80,8 @@ public class GraphicInterface extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem2);
+
+        jSeparator2.setForeground(new java.awt.Color(153, 153, 153));
         jMenu1.add(jSeparator2);
 
         jMenuItem3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -85,6 +92,13 @@ public class GraphicInterface extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem3);
+
+        jSeparator3.setForeground(new java.awt.Color(153, 153, 153));
+        jMenu1.add(jSeparator3);
+
+        jMenuItem6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem6.setText("<html><b>Delete</b> Password Folder ?</html>");
+        jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
 
@@ -151,23 +165,55 @@ public class GraphicInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        PasswordFolder decrypted = ofp.showAndReturn();
+        decrypted = ofp.showAndReturn();
         
         if (decrypted != null) {
             String s[] = new String[decrypted.size()];            
             for (int i = 0; i < s.length; i++) {
-                s[i] = decrypted.get(i).getInfo(3);
+                s[i] = decrypted.get(i).getInfo(2);
             }            
             jList1.setListData(s);
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // show details of selected item
+        int selected = jList1.getSelectedIndex();
+        
+        if (selected == -1) {
+            // nothing selected
+            JOptionPane.showMessageDialog(rootPane, "Can not show details!\nFirst make sure a PasswordFolder is currently open,\nthen select an item to see details of it.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            // show selected
+            Object[] decision = pid.showAndReturn(decrypted.get(selected));
+            
+            /* decision:
+            **  delete --> [false][false]
+            **  closed --> [false][true]
+            **  new psw -->[true][Password]
+            */
+            if (!(boolean)decision[0]) {
+                if ((boolean)decision[1]) {
+                    System.out.println("closed action");
+                }
+                else {
+                    System.out.println("delete action");
+                }
+            }
+            else {
+                if (decision[1] != null) {
+                    System.out.println("new password action");
+                }
+            }
+        }
+            //////////////
+//////////////////// decision sara' utlizzato poi                        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         jList1.setListData(new Vector());
+        decrypted = null;
     }//GEN-LAST:event_jMenuItem3ActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -183,8 +229,10 @@ public class GraphicInterface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     // End of variables declaration//GEN-END:variables
 }

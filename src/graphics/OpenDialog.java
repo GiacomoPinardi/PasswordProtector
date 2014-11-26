@@ -24,7 +24,6 @@
 package graphics;
 
 import java.io.File;
-import java.util.Arrays;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
@@ -71,6 +70,7 @@ public class OpenDialog extends javax.swing.JDialog {
         jLabel1.setText("Select .pf file to open and use passphrase to decrypt it:");
 
         jButton1.setText("Open");
+        jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -79,6 +79,7 @@ public class OpenDialog extends javax.swing.JDialog {
 
         jButton3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton3.setText("Cancel");
+        jButton3.setFocusPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

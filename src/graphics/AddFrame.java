@@ -137,7 +137,7 @@ public class AddFrame extends javax.swing.JFrame {
                     // all is good
                     
                     // create a new Object Password
-                    Password pswUnencrypted = new Password(pip.getUsername(), pip.getEmail(), pip.getWebsite(), pip.getDescription(), pip.getPassword());
+                    Password pswUnencrypted = new Password(pip.getUsername(), pip.getEmail(), pip.getDescription(), pip.getWebsite(), pip.getPassword());
                     
                     // encrypt the password
                     Password pswCrypted = enc.encryptThisPassword(pswUnencrypted, sip.getPassphrase());
