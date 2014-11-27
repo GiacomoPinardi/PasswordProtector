@@ -148,7 +148,7 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
     
     public int getProblems () {
         // psw1 == null || psw2 == null;
-        if (this.getPsw1().equals("[]") || this.getPsw2().equals("[]")) {            
+        if (this.getPsw1().equals("") || this.getPsw2().equals("")) {            
             return 1;
         }
         // psw1 != psw2

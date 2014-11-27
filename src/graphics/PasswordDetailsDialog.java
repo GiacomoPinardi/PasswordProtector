@@ -1,17 +1,22 @@
 
 package graphics;
 
+import javax.swing.JOptionPane;
 import passwordprotector.Password;
 
 public class PasswordDetailsDialog extends javax.swing.JDialog {
     
-    Object[] decision = new Object[2];
+    private Object[] decision = new Object[2];
+    private boolean saved;
     
     public PasswordDetailsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setTitle("Password Details");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
+        jLabel3.setVisible(false);
+        jPasswordField2.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -35,6 +40,8 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         jButton8 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jPasswordField2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,18 +69,29 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Enable modification ?");
+        jButton2.setText("Enable modification");
         jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Save changes ?");
+        jButton3.setText("Save changes");
+        jButton3.setEnabled(false);
         jButton3.setFocusPainted(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton4.setText("Description:");
         jButton4.setFocusPainted(false);
 
         jButton5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton5.setText("Website:");
+        jButton5.setText("Website: ?");
         jButton5.setFocusPainted(false);
 
         jButton6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -99,6 +117,9 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel3.setText("Repeat Password:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,12 +127,29 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(125, 125, 125)
-                        .addComponent(jLabel1)))
-                .addContainerGap(167, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButton4)
+                                        .addComponent(jButton5)
+                                        .addComponent(jButton6)
+                                        .addComponent(jButton7)
+                                        .addComponent(jButton8))
+                                    .addGap(25, 25, 25)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,21 +168,8 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
                                 .addComponent(jButton2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton9))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton4)
-                                    .addComponent(jButton5)
-                                    .addComponent(jButton6)
-                                    .addComponent(jButton7)
-                                    .addComponent(jButton8))
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPasswordField1))))
-                        .addGap(0, 16, Short.MAX_VALUE))))
+                            .addComponent(jLabel3))
+                        .addGap(0, 27, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +182,7 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -179,7 +204,11 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8))
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
@@ -190,14 +219,41 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // delete this password        
-        this.disposeAfterDeleting();
+        // delete this password 
+        int k = JOptionPane.showConfirmDialog(rootPane, "Do you really want delete this Password?\nThis action cannot be undone.", "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (k == 0) {
+            this.disposeAfterDeleting();
+        }        
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // close action        
-        this.disposeClose();
+        if (jLabel3.isVisible() && !this.saved) {
+            int h = JOptionPane.showConfirmDialog(rootPane, "Your changes aren't saved.\nSave it before closing?", "Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION);
+            // h == 0, YES
+            // h == 1, NO
+            // h == 2, CANCEL
+            if (h == 0) {
+                if (this.saveChanges()) {
+                    this.disposeClose();
+                }
+            }
+            else if (h == 1) {
+                this.disposeClose();
+            }
+        }
+        else {
+            this.disposeClose();
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.enableModification();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.saveChanges();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public Object[] showAndReturn (Password p) {        
         jTextField1.setText(p.getInfo(2));
@@ -206,8 +262,58 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         jTextField3.setText(p.getInfo(1)); 
         jPasswordField1.setText(p.getInfo(4));
         
+        this.saved = false;
+        
         this.show();
         return decision;
+    }
+    
+    private boolean saveChanges () {
+        if (jTextField1.getText().equals("")) {
+            // must fill description field
+            JOptionPane.showMessageDialog(rootPane, "Cannot save!\nPlease fill description field!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else if (this.getPsw1().equals("") || this.getPsw2().equals("")) {
+            // psw1 == null || pasw2 == null
+            JOptionPane.showMessageDialog(rootPane, "Cannot save!\nPlease insert both passwords!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else if (!this.getPsw1().equals(this.getPsw2())) {
+            // psw1 != psw2
+            JOptionPane.showMessageDialog(rootPane, "Cannot save!\nThe passwords inserted don't match!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else {
+            // all is good
+            this.saved = true;
+            
+            decision[0] = true;
+            decision[1] = new Password(jTextField2.getText(), jTextField3.getText(), jTextField1.getText(), jTextField4.getText(), this.getPsw1());
+            //JOptionPane.showMessageDialog(rootPane, "Changes successful saved!", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+            
+            this.blockAll();
+            
+            return true;
+        }
+    }
+    
+    private String getPsw1 () {        
+        char c[] = jPasswordField1.getPassword();
+        String s = "";
+        for (int i = 0; i < c.length; i++) {
+            s = s +c [i];
+        }
+        return s;
+    }
+    
+    private String getPsw2 () {
+        char c[] = jPasswordField2.getPassword();
+        String s = "";
+        for (int i = 0; i < c.length; i++) {
+            s = s +c [i];
+        }
+        return s;
     }
     
     private void disposeAfterDeleting () {        
@@ -219,11 +325,38 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
     }
     
     private void disposeClose () {
-        decision[0] = false;
-        decision[1] = true;
+        if (!this.saved) {
+            // if saved, don't change decision
+            decision[0] = false;
+            decision[1] = true;
+        }        
         
         this.resetFields();
         this.dispose();
+    }
+    
+    private void enableModification () {
+        jTextField1.setEditable(true);
+        jTextField4.setEditable(true);
+        jTextField2.setEditable(true);
+        jTextField3.setEditable(true);
+        jPasswordField1.setEditable(true);
+        jPasswordField2.setVisible(true);
+        jLabel3.setVisible(true);
+        
+        jButton3.setEnabled(true);
+    }
+    
+    private void blockAll () {
+        jTextField1.setEditable(false);
+        jTextField4.setEditable(false);
+        jTextField2.setEditable(false);
+        jTextField3.setEditable(false); 
+        jPasswordField1.setEditable(false);        
+        jPasswordField2.setVisible(false);
+        jLabel3.setVisible(false);
+        
+        jButton3.setEnabled(false);
     }
     
     private void resetFields () {
@@ -231,7 +364,10 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         jTextField4.setText("");
         jTextField2.setText("");
         jTextField3.setText(""); 
-        jPasswordField1.setText("");
+        jPasswordField1.setText("");        
+        jPasswordField2.setText("");
+        
+        this.blockAll();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -245,7 +381,9 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

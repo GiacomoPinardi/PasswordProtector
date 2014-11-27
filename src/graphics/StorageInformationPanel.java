@@ -201,7 +201,7 @@ public class StorageInformationPanel extends javax.swing.JPanel {
                 return 1;
             }
             // psw1 == null
-            else if (this.getPsw1().equals("[]")) {
+            else if (this.getPsw1().equals("")) {
                 return 3;
             }
             // all is good
@@ -215,7 +215,7 @@ public class StorageInformationPanel extends javax.swing.JPanel {
                 return 2;
             }
             // psw1 == null || psw2 == null;
-            else if (this.getPsw2().equals("[]") || this.getPsw3().equals("[]")) {
+            else if (this.getPsw2().equals("") || this.getPsw3().equals("")) {
                 return 4;
             }
             // psw1 != psw2

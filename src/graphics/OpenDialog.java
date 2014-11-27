@@ -173,7 +173,7 @@ public class OpenDialog extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (f1 != null) {
             // file chose
-            if (this.getPassphrase().equals("[]")) {
+            if (this.getPassphrase().equals("")) {
                 // no passphrase inserted
                 JOptionPane.showMessageDialog(rootPane, "Please insert the passphrase!", "ERROR", JOptionPane.ERROR_MESSAGE);
             }

@@ -3,6 +3,7 @@ package graphics;
 
 import java.util.Vector;
 import javax.swing.JOptionPane;
+import passwordprotector.Password;
 import passwordprotector.PasswordFolder;
 
 public class GraphicInterface extends javax.swing.JFrame {
@@ -181,7 +182,11 @@ public class GraphicInterface extends javax.swing.JFrame {
         
         if (selected == -1) {
             // nothing selected
-            JOptionPane.showMessageDialog(rootPane, "Can not show details!\nFirst make sure a PasswordFolder is currently open,\nthen select an item to see details of it.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Cannot show details!\nFirst make sure a PasswordFolder is currently open,\nthen select an item to see details of it.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        else if ((jList1.getMinSelectionIndex() - jList1.getMaxSelectionIndex()) != 0) {
+            // multiple selected
+            JOptionPane.showMessageDialog(rootPane, "Please select only one element!", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         else {
             // show selected
@@ -203,6 +208,10 @@ public class GraphicInterface extends javax.swing.JFrame {
             else {
                 if (decision[1] != null) {
                     System.out.println("new password action");
+                    Password saved = (Password) decision[1];
+                    for (int i = 0; i < 5; i++) {
+                        System.out.println(saved.getInfo(i));
+                    }
                 }
             }
         }

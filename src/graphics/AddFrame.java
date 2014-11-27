@@ -152,7 +152,7 @@ public class AddFrame extends javax.swing.JFrame {
                             this.specialDispose();
                         }
                         else {
-                            JOptionPane.showMessageDialog(rootPane, "Can not add new Password in:\n!" + path, "ERROR", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(rootPane, "Cannot add new Password in:\n!" + path, "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                     else {
@@ -165,7 +165,7 @@ public class AddFrame extends javax.swing.JFrame {
                             this.specialDispose();
                         }
                         else {
-                            JOptionPane.showMessageDialog(rootPane, "Can not create a new PasswordFolder!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(rootPane, "Cannot create a new PasswordFolder!", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                     break;
