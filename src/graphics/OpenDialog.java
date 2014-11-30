@@ -40,6 +40,8 @@ public class OpenDialog extends javax.swing.JDialog {
     
     PasswordFolder decrypted = null;
     
+    Object data;
+    
     File f1 = null;
     
     public OpenDialog(java.awt.Frame parent, boolean modal) {
@@ -48,6 +50,8 @@ public class OpenDialog extends javax.swing.JDialog {
         this.setTitle("Open PasswordFolder");
         fc.setAcceptAllFileFilterUsed(false);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
+        data = new Object[2];
     }
     
     @SuppressWarnings("unchecked")
@@ -183,7 +187,10 @@ public class OpenDialog extends javax.swing.JDialog {
             }
             else {
                 // all is good
+                
+                //data[0] = f1;
                 decrypted = enc.decryptThisFile(f1, this.getPassphrase());
+                
                 JOptionPane.showMessageDialog(rootPane, "Successfully decrypted PasswordFolder from:\n" + f1.getAbsolutePath(), "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 this.specialDispose();
             }

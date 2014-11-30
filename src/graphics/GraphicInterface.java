@@ -10,7 +10,7 @@ public class GraphicInterface extends javax.swing.JFrame {
 
     AddFrame af = new AddFrame();
     OpenDialog ofp = new OpenDialog(this,true);
-    PasswordDetailsDialog pid = new PasswordDetailsDialog(this, true);
+    PasswordDetailsDialog pdd = new PasswordDetailsDialog(this, true);
     
     PasswordFolder decrypted = null;
     
@@ -129,8 +129,8 @@ public class GraphicInterface extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
+                                .addComponent(jLabel2)
+                                .addGap(21, 21, 21)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
@@ -147,14 +147,14 @@ public class GraphicInterface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -166,15 +166,8 @@ public class GraphicInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        decrypted = ofp.showAndReturn();
-        
-        if (decrypted != null) {
-            String s[] = new String[decrypted.size()];            
-            for (int i = 0; i < s.length; i++) {
-                s[i] = decrypted.get(i).getInfo(2);
-            }            
-            jList1.setListData(s);
-        }
+        decrypted = ofp.showAndReturn();        
+        this.setList(decrypted);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -182,7 +175,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         
         if (selected == -1) {
             // nothing selected
-            JOptionPane.showMessageDialog(rootPane, "Cannot show details!\nFirst make sure a PasswordFolder is currently open,\nthen select an item to see details of it.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Cannot show details!\nFirst make sure a PasswordFolder is currently open,\nthen select an item to show its details.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         else if ((jList1.getMinSelectionIndex() - jList1.getMaxSelectionIndex()) != 0) {
             // multiple selected
@@ -190,7 +183,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         }
         else {
             // show selected
-            Object[] decision = pid.showAndReturn(decrypted.get(selected));
+            Object[] decision = pdd.showAndReturn(decrypted.get(selected));
             
             /* decision:
             **  delete --> [false][false]
@@ -199,31 +192,42 @@ public class GraphicInterface extends javax.swing.JFrame {
             */
             if (!(boolean)decision[0]) {
                 if ((boolean)decision[1]) {
-                    System.out.println("closed action");
+                    // closed action
                 }
                 else {
-                    System.out.println("delete action");
+                    // deleted action
+                    decrypted.remove(selected);
+                    this.setList(decrypted);
+ ///////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////// nel file il tutto rimane, il file andrebbe sostituito con il nuovo decrypted
+                    // bisogna che "OpenDialog.java ritorni il file e la passphrase e non il decriptato"
                 }
             }
             else {
-                if (decision[1] != null) {
-                    System.out.println("new password action");
+                if (decision[1] != null) {                    
+                    // saved action, replace the old Password with the new one
                     Password saved = (Password) decision[1];
-                    for (int i = 0; i < 5; i++) {
-                        System.out.println(saved.getInfo(i));
-                    }
+                    decrypted.set(selected, saved);
+                    this.setList(decrypted);
                 }
             }
         }
-            //////////////
-//////////////////// decision sara' utlizzato poi                        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         jList1.setListData(new Vector());
         decrypted = null;
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+    
+    private void setList (PasswordFolder passfold) {
+        if (passfold != null) {
+            String s[] = new String[passfold.size()];            
+            for (int i = 0; i < s.length; i++) {
+                s[i] = passfold.get(i).getInfo(2);
+            }            
+            jList1.setListData(s);
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

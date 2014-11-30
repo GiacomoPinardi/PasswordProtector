@@ -1,6 +1,9 @@
 
 package graphics;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import javax.swing.JOptionPane;
 import passwordprotector.Password;
 
@@ -8,6 +11,9 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
     
     private Object[] decision = new Object[2];
     private boolean saved;
+    
+    Clipboard clipboard = null;
+    StringSelection selection = null;
     
     public PasswordDetailsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -17,6 +23,8 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         
         jLabel3.setVisible(false);
         jPasswordField2.setVisible(false);
+        
+        clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     }
 
     @SuppressWarnings("unchecked")
@@ -89,22 +97,47 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         jButton4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton4.setText("Description:");
         jButton4.setFocusPainted(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton5.setText("Website: ?");
+        jButton5.setText("Website:");
         jButton5.setFocusPainted(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton6.setText("Username/ID:");
         jButton6.setFocusPainted(false);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton7.setText("E-mail:");
         jButton7.setFocusPainted(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton8.setText("Password:");
         jButton8.setFocusPainted(false);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel2.setText("Click an item to copy it to Clipboard");
@@ -125,32 +158,6 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton4)
-                                        .addComponent(jButton5)
-                                        .addComponent(jButton6)
-                                        .addComponent(jButton7)
-                                        .addComponent(jButton8))
-                                    .addGap(25, 25, 25)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -170,6 +177,32 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
                                 .addComponent(jButton9))
                             .addComponent(jLabel3))
                         .addGap(0, 27, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButton4)
+                                        .addComponent(jButton5)
+                                        .addComponent(jButton6)
+                                        .addComponent(jButton7)
+                                        .addComponent(jButton8))
+                                    .addGap(25, 25, 25)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +241,7 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
@@ -255,6 +288,26 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         this.saveChanges();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.setClipboard(jTextField1.getText());
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.setClipboard(jTextField4.getText());
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        this.setClipboard(jTextField2.getText());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        this.setClipboard(jTextField3.getText());
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        this.setClipboard(this.getPsw1());
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     public Object[] showAndReturn (Password p) {        
         jTextField1.setText(p.getInfo(2));
         jTextField4.setText(p.getInfo(3));
@@ -296,6 +349,11 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
             
             return true;
         }
+    }
+    
+    private void setClipboard(String s) {
+        selection = new StringSelection(s);
+        clipboard.setContents(selection, null);
     }
     
     private String getPsw1 () {        
