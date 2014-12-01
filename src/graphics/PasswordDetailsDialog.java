@@ -4,6 +4,8 @@ package graphics;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import passwordprotector.Password;
 
@@ -14,6 +16,9 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
     
     Clipboard clipboard = null;
     StringSelection selection = null;
+    
+    Timer t = new Timer();
+    TimerTask tt = null;
     
     public PasswordDetailsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -306,6 +311,13 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         this.setClipboard(this.getPsw1());
+        tt = new TimerTask() {
+            @Override
+            public void run() {
+                setClipboard("");
+            }
+        };
+        t.schedule(tt, 10000);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     public Object[] showAndReturn (Password p) {        

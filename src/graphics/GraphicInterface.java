@@ -183,7 +183,12 @@ public class GraphicInterface extends javax.swing.JFrame {
             this.currentPassphrase = (String) openData[1];
             
             this.decrypted = enc.decryptThisFile(currentOpened, currentPassphrase);
-            this.setList(decrypted);
+            if (decrypted.size() < 1) {
+                JOptionPane.showMessageDialog(rootPane, "The PasswordFolder selected is empty!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                this.setList(decrypted);
+            }            
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -221,7 +226,6 @@ public class GraphicInterface extends javax.swing.JFrame {
                         crypted.add(enc.encryptThisPassword(decrypted.get(i), this.currentPassphrase));
                     }
                     ser.createNew(crypted, this.currentOpened.getAbsolutePath());
-                    ////////////////////////////////////////////////////////// controllare null
                     
                     this.setList(decrypted);
                 }
@@ -229,6 +233,10 @@ public class GraphicInterface extends javax.swing.JFrame {
             else {
                 if (decision[1] != null) {                    
                     // saved action, replace the old Password with the new one
+                    
+                    // saved action --> to do
+                    
+                    
                     Password saved = (Password) decision[1];
                     decrypted.set(selected, saved);
                     this.setList(decrypted);
