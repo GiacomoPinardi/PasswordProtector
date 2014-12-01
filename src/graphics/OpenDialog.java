@@ -29,7 +29,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import passwordprotector.Encryptor;
-import passwordprotector.PasswordFolder;
 
 public class OpenDialog extends javax.swing.JDialog {
 
@@ -38,9 +37,7 @@ public class OpenDialog extends javax.swing.JDialog {
     
     Encryptor enc = new Encryptor();
     
-    PasswordFolder decrypted = null;
-    
-    Object data;
+    Object[] data = new Object[2];
     
     File f1 = null;
     
@@ -49,9 +46,7 @@ public class OpenDialog extends javax.swing.JDialog {
         initComponents();
         this.setTitle("Open PasswordFolder");
         fc.setAcceptAllFileFilterUsed(false);
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        
-        data = new Object[2];
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);        
     }
     
     @SuppressWarnings("unchecked")
@@ -188,8 +183,8 @@ public class OpenDialog extends javax.swing.JDialog {
             else {
                 // all is good
                 
-                //data[0] = f1;
-                decrypted = enc.decryptThisFile(f1, this.getPassphrase());
+                data[0] = f1;
+                data[1] = this.getPassphrase();
                 
                 JOptionPane.showMessageDialog(rootPane, "Successfully decrypted PasswordFolder from:\n" + f1.getAbsolutePath(), "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 this.specialDispose();
@@ -211,9 +206,9 @@ public class OpenDialog extends javax.swing.JDialog {
         f1 = fc.getSelectedFile();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public PasswordFolder showAndReturn () {
+    public Object[] showAndReturn () {
         this.show();                
-        return decrypted;   
+        return data;   
     }
     
     private void specialDispose () {
@@ -224,7 +219,8 @@ public class OpenDialog extends javax.swing.JDialog {
     
     private void cancelAction () {
         f1 = null;
-        decrypted = null; 
+        data[0] = null; 
+        data[1] = null;
         jPasswordField3.setText("");
         this.dispose();
     }
@@ -233,7 +229,7 @@ public class OpenDialog extends javax.swing.JDialog {
         char c[] = jPasswordField3.getPassword();
         String s = "";
         for (int i = 0; i < c.length; i++) {
-            s = s +c [i];
+            s = s + c[i];
         }
         return s;
     }

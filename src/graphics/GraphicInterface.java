@@ -1,13 +1,16 @@
 
 package graphics;
 
+import java.io.File;
 import java.util.Vector;
 import javax.swing.JOptionPane;
+import passwordprotector.Encryptor;
 import passwordprotector.Password;
 import passwordprotector.PasswordFolder;
 
 public class GraphicInterface extends javax.swing.JFrame {
 
+    Encryptor enc = new Encryptor();
     AddFrame af = new AddFrame();
     OpenDialog ofp = new OpenDialog(this,true);
     PasswordDetailsDialog pdd = new PasswordDetailsDialog(this, true);
@@ -166,8 +169,11 @@ public class GraphicInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        decrypted = ofp.showAndReturn();        
-        this.setList(decrypted);
+        Object[] data = ofp.showAndReturn();  
+        if ((data[0] != null) && (data[1] != null)) {
+            this.decrypted = enc.decryptThisFile((File) data[0], (String) data[1]);
+            this.setList(decrypted);
+        }       
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
