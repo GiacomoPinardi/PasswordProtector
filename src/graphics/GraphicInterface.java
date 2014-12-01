@@ -7,15 +7,21 @@ import javax.swing.JOptionPane;
 import passwordprotector.Encryptor;
 import passwordprotector.Password;
 import passwordprotector.PasswordFolder;
+import passwordprotector.Serializer;
 
 public class GraphicInterface extends javax.swing.JFrame {
 
     Encryptor enc = new Encryptor();
+    Serializer ser = new Serializer();
     AddFrame af = new AddFrame();
-    OpenDialog ofp = new OpenDialog(this,true);
+    OpenDialog od = new OpenDialog(this,true);
     PasswordDetailsDialog pdd = new PasswordDetailsDialog(this, true);
     
     PasswordFolder decrypted = null;
+    Object[] openData = new Object[2];
+    
+    File currentOpened = null;
+    String currentPassphrase = null;
     
     public GraphicInterface() {
         initComponents();
@@ -169,11 +175,16 @@ public class GraphicInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        Object[] data = ofp.showAndReturn();  
-        if ((data[0] != null) && (data[1] != null)) {
-            this.decrypted = enc.decryptThisFile((File) data[0], (String) data[1]);
+        this.openData = od.showAndReturn();  
+        // openData[0] --> file
+        // openData[1] --> passpharse
+        if ((openData[0] != null) && (openData[1] != null)) {
+            this.currentOpened = (File) openData[0];
+            this.currentPassphrase = (String) openData[1];
+            
+            this.decrypted = enc.decryptThisFile(currentOpened, currentPassphrase);
             this.setList(decrypted);
-        }       
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -203,10 +214,16 @@ public class GraphicInterface extends javax.swing.JFrame {
                 else {
                     // deleted action
                     decrypted.remove(selected);
+                    
+                    PasswordFolder crypted = new PasswordFolder();
+                    // encrypting decrypted passwordfolder
+                    for (int i = 0; i < decrypted.size(); i++) {
+                        crypted.add(enc.encryptThisPassword(decrypted.get(i), this.currentPassphrase));
+                    }
+                    ser.createNew(crypted, this.currentOpened.getAbsolutePath());
+                    ////////////////////////////////////////////////////////// controllare null
+                    
                     this.setList(decrypted);
- ///////////////////////////////////////////////////////////////////
- /////////////////////////////////////////////////////////////////// nel file il tutto rimane, il file andrebbe sostituito con il nuovo decrypted
-                    // bisogna che "OpenDialog.java ritorni il file e la passphrase e non il decriptato"
                 }
             }
             else {
@@ -222,6 +239,8 @@ public class GraphicInterface extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         jList1.setListData(new Vector());
+        currentOpened = null;
+        currentPassphrase = null;
         decrypted = null;
     }//GEN-LAST:event_jMenuItem3ActionPerformed
     

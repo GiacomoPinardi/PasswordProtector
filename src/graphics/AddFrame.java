@@ -2,27 +2,19 @@
 package graphics;
 
 import java.awt.BorderLayout;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import javax.swing.JOptionPane;
 import passwordprotector.Encryptor;
 import passwordprotector.Password;
 import passwordprotector.PasswordFolder;
+import passwordprotector.Serializer;
 
 public class AddFrame extends javax.swing.JFrame {
     
     private  PasswordInformationPanel pip = new PasswordInformationPanel(); 
     private StorageInformationPanel sip = new StorageInformationPanel();      
     
-    private FileOutputStream fileOut = null;
-    private FileInputStream fileIn = null;
-    private ObjectOutputStream outObj = null;
-    private ObjectInputStream inObj = null;
-    
     Encryptor enc = new Encryptor();
+    Serializer ser = new Serializer();
     
     public AddFrame() {
         initComponents();
@@ -147,7 +139,7 @@ public class AddFrame extends javax.swing.JFrame {
                     
                     if (sip.getAction()) {
                         // add to existing PasswordFolder
-                        if (this.addToExisting(pswCrypted, path)) {
+                        if (ser.addToExisting(pswCrypted, path)) {
                             JOptionPane.showMessageDialog(rootPane, "Successfully added a new Password in:\n" + path, "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                             this.specialDispose();
                         }
@@ -160,7 +152,7 @@ public class AddFrame extends javax.swing.JFrame {
                         PasswordFolder passfold = new PasswordFolder();
                         passfold.add(pswCrypted);
                         
-                        if (this.createNew(passfold, path)) {
+                        if (ser.createNew(passfold, path)) {
                             JOptionPane.showMessageDialog(rootPane, "Successfully created a new PasswordFolder in:\n" + path, "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                             this.specialDispose();
                         }
@@ -218,43 +210,7 @@ public class AddFrame extends javax.swing.JFrame {
         this.add(sip);
         this.pack();
     }
-    
-    private boolean addToExisting (Password p, String location) {
-        try {  
-            fileIn = new FileInputStream(location);
-            inObj = new ObjectInputStream(fileIn);
-            
-            PasswordFolder pf = (PasswordFolder) inObj.readObject();
-            
-            inObj.close();
-            fileIn.close();
-            
-            pf.add(p);
-            
-            boolean b = this.createNew(pf, location);
-            
-            return (true && b);
-        }
-        catch (IOException | ClassNotFoundException ex) {
-            return false;
-        }
-    }
-    
-    private boolean createNew (PasswordFolder pf, String location) {       
-        try {
-            fileOut = new FileOutputStream(location);
-            outObj = new ObjectOutputStream(fileOut);
-            outObj.writeObject(pf);
-            outObj.close();
-            fileOut.close();
-            return true;
-        }         
-        catch (IOException ex) {            
-            return false;
-        }
         
-    }    
-    
     private void specialDispose () {
         this.dispose();
         this.pip.setVisible(true);
