@@ -107,7 +107,12 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu1.add(jSeparator3);
 
         jMenuItem6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jMenuItem6.setText("<html><b>Delete</b> Password Folder ?</html>");
+        jMenuItem6.setText("<html><b>Delete</b> Password Folder</html>");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
@@ -118,7 +123,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu2.add(jMenuItem5);
 
         jMenuItem4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jMenuItem4.setText("<html>Open <b>About</b> Window (todo)</html>");
+        jMenuItem4.setText("<html>About (todo)</html>");
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -148,7 +153,7 @@ public class GraphicInterface extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -236,11 +241,23 @@ public class GraphicInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        jList1.setListData(new Vector());
-        currentOpened = null;
-        currentPassphrase = null;
-        decrypted = null;
+        this.closePassFold();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // delete currently opened PasswordFolder
+        if (this.currentOpened != null) {                    
+            int k = JOptionPane.showConfirmDialog(rootPane, "Do you really want delete this PasswordFolder?\nAll the Password stored in it will be deleted.\nThis action cannot be undone.", "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (k == 0) {
+                this.currentOpened.delete();
+                this.closePassFold();
+                JOptionPane.showMessageDialog(rootPane, "Successfully deleted!", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+            }  
+        }
+        else {
+            JOptionPane.showMessageDialog(rootPane, "Cannot delete!\nFirst make sure a PasswordFolder is currently open.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
     
     private void setList (PasswordFolder passfold) {
         if (passfold != null) {
@@ -261,6 +278,13 @@ public class GraphicInterface extends javax.swing.JFrame {
         ser.createNew(crypted, this.currentOpened.getAbsolutePath());
                                         
         this.setList(decrypted);
+    }
+    
+    private void closePassFold () {
+        jList1.setListData(new Vector());
+        currentOpened = null;
+        currentPassphrase = null;
+        decrypted = null;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
