@@ -220,26 +220,16 @@ public class GraphicInterface extends javax.swing.JFrame {
                     // deleted action
                     decrypted.remove(selected);
                     
-                    PasswordFolder crypted = new PasswordFolder();
-                    // encrypting decrypted passwordfolder
-                    for (int i = 0; i < decrypted.size(); i++) {
-                        crypted.add(enc.encryptThisPassword(decrypted.get(i), this.currentPassphrase));
-                    }
-                    ser.createNew(crypted, this.currentOpened.getAbsolutePath());
-                    
-                    this.setList(decrypted);
+                   this.setDecisionFileAndGUI();
                 }
             }
             else {
                 if (decision[1] != null) {                    
-                    // saved action, replace the old Password with the new one
-                    
-                    // saved action --> to do
-                    
-                    
+                    // saved action, replace the old Password with the new one                                                         
                     Password saved = (Password) decision[1];
                     decrypted.set(selected, saved);
-                    this.setList(decrypted);
+                    
+                    this.setDecisionFileAndGUI();
                 }
             }
         }
@@ -260,6 +250,17 @@ public class GraphicInterface extends javax.swing.JFrame {
             }            
             jList1.setListData(s);
         }
+    }
+    
+    private void setDecisionFileAndGUI () {
+        PasswordFolder crypted = new PasswordFolder();
+        // encrypting decrypted passwordfolder
+        for (int i = 0; i < decrypted.size(); i++) {
+            crypted.add(enc.encryptThisPassword(decrypted.get(i), this.currentPassphrase));
+        }
+        ser.createNew(crypted, this.currentOpened.getAbsolutePath());
+                                        
+        this.setList(decrypted);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
