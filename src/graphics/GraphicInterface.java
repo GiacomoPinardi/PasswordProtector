@@ -14,6 +14,7 @@ public class GraphicInterface extends javax.swing.JFrame {
     Encryptor enc = new Encryptor();
     Serializer ser = new Serializer();
     AddFrame af = new AddFrame();
+    AboutFrame ab = new AboutFrame();
     OpenDialog od = new OpenDialog(this,true);
     PasswordDetailsDialog pdd = new PasswordDetailsDialog(this, true);
     
@@ -124,6 +125,11 @@ public class GraphicInterface extends javax.swing.JFrame {
 
         jMenuItem4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuItem4.setText("<html>About (todo)</html>");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -258,6 +264,10 @@ public class GraphicInterface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Cannot delete!\nFirst make sure a PasswordFolder is currently open.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        ab.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
     
     private void setList (PasswordFolder passfold) {
         if (passfold != null) {
