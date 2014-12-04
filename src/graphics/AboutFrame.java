@@ -83,7 +83,7 @@ public class AboutFrame extends javax.swing.JFrame {
         jLabel8.setText("Version:");
 
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel9.setText("v 2.0.2");
+        jLabel9.setText("v 2.2");
 
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
 
