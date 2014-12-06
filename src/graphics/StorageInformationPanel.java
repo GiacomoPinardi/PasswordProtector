@@ -6,7 +6,6 @@
 package graphics;
 
 import java.io.File;
-import java.util.Arrays;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -30,8 +29,6 @@ public class StorageInformationPanel extends javax.swing.JPanel {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jButton2 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jPasswordField3 = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -44,6 +41,7 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         jButton2.setText("Select");
         jButton2.setFocusPainted(false);
@@ -53,13 +51,11 @@ public class StorageInformationPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel10.setText("Passphrase:");
-
         jLabel11.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel11.setText("Select location:");
 
         jButton3.setText("Select");
+        jButton3.setEnabled(false);
         jButton3.setFocusPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,11 +77,21 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         jRadioButton1.setSelected(true);
         jRadioButton1.setText("<html><b>Add to an existing</b> Password Folder File:</html>");
         jRadioButton1.setFocusPainted(false);
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jRadioButton2.setText("<html><b>Create a new</b> Password Folder File:</html>");
         jRadioButton2.setFocusPainted(false);
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel9.setText("Select .pf file:");
@@ -95,52 +101,60 @@ public class StorageInformationPanel extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
 
+        jSeparator2.setForeground(new java.awt.Color(160, 160, 160));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(33, 33, 33)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addGap(16, 16, 16)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel9)
-                                                .addComponent(jLabel10))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jButton2)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel8)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
+                                            .addGap(33, 33, 33)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel12)
-                                                .addComponent(jLabel11))
-                                            .addGap(42, 42, 42)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jPasswordField4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jButton3)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel13)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jPasswordField5, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(16, 16, 16)
+                                                    .addComponent(jLabel9)
+                                                    .addGap(38, 38, 38)
+                                                    .addComponent(jButton2)
+                                                    .addGap(111, 111, 111))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel11)
+                                                    .addGap(42, 42, 42)
+                                                    .addComponent(jButton3)))))
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(61, 61, 61)
+                        .addComponent(jPasswordField4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPasswordField5, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,16 +172,14 @@ public class StorageInformationPanel extends javax.swing.JPanel {
                     .addComponent(jLabel9)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
@@ -175,7 +187,7 @@ public class StorageInformationPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPasswordField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -193,56 +205,45 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         f2 = fc.getSelectedFile();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        jButton3.setEnabled(true);
+        jButton2.setEnabled(false);
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        jButton2.setEnabled(true);
+        jButton3.setEnabled(false);
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
     public int getProblems() {        
         
-        if (jRadioButton1.isSelected()) {
-            // no file1 selected
-            if (f1 == null) {
-                return 1;
-            }
-            // psw1 == null
-            else if (this.getPsw1().equals("")) {
-                return 3;
-            }
-            // all is good
-            else {
-                return 0;
-            }  
+        // psw1 == null || psw2 == null;
+        if ((this.getPsw1().equals("")) || (this.getPsw2().equals(""))) {
+            return 1;
         }
+        // psw1 != psw2
+        else if (!this.getPsw1().equals(this.getPsw2())) {
+            return 2;
+        }
+        // the passphrase is too short
+        else if (this.getPsw1().length() < 8) {
+            return 3;
+        }
+        // no file1 selected
+        else if (jRadioButton1.isSelected() && (f1 == null)) {
+            return 4;
+        }
+        // no file2 selected
+        else if (jRadioButton2.isSelected() && (f2 == null)) {
+            return 5;
+        }
+        // all is good
         else {
-            // no folder selected
-            if (f2 == null) {
-                return 2;
-            }
-            // psw1 == null || psw2 == null;
-            else if (this.getPsw2().equals("") || this.getPsw3().equals("")) {
-                return 4;
-            }
-            // psw1 != psw2
-            else if (!this.getPsw2().equals(this.getPsw3())) {
-                return 5;
-            }
-            // the passphrase is too short
-            else if (this.getPsw2().length() < 8) {
-                return 6;
-            }
-            // all is good
-            else {
-                return 0;
-            }
-        }
+            return 0;
+        }        
     }
     
     private String getPsw1 () {
-        char c[] = jPasswordField3.getPassword();
-        String s = "";
-        for (int i = 0; i < c.length; i++) {
-            s = s +c [i];
-        }
-        return s;
-    }
-    
-    private String getPsw2 () {
         char c[] = jPasswordField4.getPassword();
         String s = "";
         for (int i = 0; i < c.length; i++) {
@@ -251,7 +252,7 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         return s;
     }
     
-    private String getPsw3 () {
+    private String getPsw2 () {
         char c[] = jPasswordField5.getPassword();
         String s = "";
         for (int i = 0; i < c.length; i++) {
@@ -280,21 +281,17 @@ public class StorageInformationPanel extends javax.swing.JPanel {
     }
     
     public String getPassphrase () {
-        if (jRadioButton1.isSelected()) {
-            return this.getPsw1();
-        }
-        else {
-            return this.getPsw2();
-        }
+        return this.getPsw1();
     }
     
     public void resetFields () {
-        jPasswordField3.setText("");
         jPasswordField4.setText("");
         jPasswordField5.setText("");
         f1 = null;
         f2 = null;
         jRadioButton1.setSelected(true);
+        jButton2.setEnabled(true);
+        jButton3.setEnabled(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -302,17 +299,16 @@ public class StorageInformationPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField3;
     private javax.swing.JPasswordField jPasswordField4;
     private javax.swing.JPasswordField jPasswordField5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

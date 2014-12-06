@@ -162,29 +162,25 @@ public class AddFrame extends javax.swing.JFrame {
                     }
                     break;
                 case 1:
-                    // no file1 selected
-                    JOptionPane.showMessageDialog(rootPane, "Please select a .pf file!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    break;
-                case 2:
-                    // no file2 selected
-                    JOptionPane.showMessageDialog(rootPane, "Please select the destination folder!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    break;
-                case 3:
-                    // no passphrase insterted
-                    JOptionPane.showMessageDialog(rootPane, "Please insert the passphrase!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    break;
-                case 4:
-                    // no password/s inserted
+                    // no passphrases inserted
                     JOptionPane.showMessageDialog(rootPane, "Please insert both passphrases!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    break;
-                case 5:
+                    break;                    
+                case 2:
                     // passwords don't match
                     JOptionPane.showMessageDialog(rootPane, "The passphrases inserted don't match!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    break;
-                case 6:
+                    break;              
+                case 3:
                     // passphrase too short
                     JOptionPane.showMessageDialog(rootPane, "The passphrase inserted is too short!\nUse at least 8 characters.", "ERROR", JOptionPane.ERROR_MESSAGE);
                     break;
+                case 4:  
+                    // no file1 selected
+                    JOptionPane.showMessageDialog(rootPane, "Please select a .pf file!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    break;                    
+                case 5:                    
+                    // no file2 selected
+                    JOptionPane.showMessageDialog(rootPane, "Please select the destination folder!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    break;  
             }
         }
                 
