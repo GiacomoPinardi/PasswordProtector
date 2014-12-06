@@ -355,7 +355,6 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
             
             decision[0] = true;
             decision[1] = new Password(jTextField2.getText(), jTextField3.getText(), jTextField1.getText(), jTextField4.getText(), this.getPsw1());
-            //JOptionPane.showMessageDialog(rootPane, "Changes successful saved!", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
             
             this.blockAll();
             

@@ -2,6 +2,8 @@
 package graphics;
 
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import passwordprotector.Encryptor;
@@ -124,7 +126,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu2.add(jMenuItem5);
 
         jMenuItem4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jMenuItem4.setText("<html>About (todo)</html>");
+        jMenuItem4.setText("About");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
