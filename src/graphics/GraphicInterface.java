@@ -2,8 +2,6 @@
 package graphics;
 
 import java.io.File;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import passwordprotector.Encryptor;
@@ -275,7 +273,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         if (passfold != null) {
             String s[] = new String[passfold.size()];            
             for (int i = 0; i < s.length; i++) {
-                s[i] = passfold.get(i).getInfo(2);
+                s[i] = (String) passfold.get(i).getInfo(2);
             }            
             jList1.setListData(s);
         }

@@ -73,9 +73,9 @@ public class AddFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton3)
-                .addGap(60, 60, 60)
+                .addGap(69, 69, 69)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -129,7 +129,7 @@ public class AddFrame extends javax.swing.JFrame {
                     // all is good
                     
                     // create a new Object Password
-                    Password pswUnencrypted = new Password(pip.getUsername(), pip.getEmail(), pip.getDescription(), pip.getWebsite(), pip.getPassword());
+                    Password pswUnencrypted = new Password(pip.getUsername(), pip.getEmail(), pip.getDescription(), pip.getWebsite(), pip.getPassword(), pip.getEncryptedFields());
                     
                     // encrypt the password
                     Password pswCrypted = enc.encryptThisPassword(pswUnencrypted, sip.getPassphrase());
@@ -195,14 +195,12 @@ public class AddFrame extends javax.swing.JFrame {
 
     private void initPasswordPanel () {
         this.setLayout(new BorderLayout());
-        //this.add(pip, BorderLayout.CENTER);
         this.add(pip);
         this.pack();
     }
     
     private void initStoragePanel () {        
         this.setLayout(new BorderLayout());
-        //this.add(pip, BorderLayout.CENTER);
         this.add(sip);
         this.pack();
     }

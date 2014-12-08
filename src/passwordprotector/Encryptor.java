@@ -16,14 +16,16 @@ public class Encryptor {
         String[] info = new String[5];
         
         for (int i = 0; i < info.length; i++) {
-            info[i] = this.toBits(unencrypted.getInfo(i));
+            info[i] = this.toBits((String) unencrypted.getInfo(i));
         }
+        
+        boolean[] encryptedFields = (boolean[]) unencrypted.getInfo(5);
         
         String psp = this.toBits(passphrase);
         
-        String[] encrypted = this.encryptThisBits(info, psp);
+        String[] encrypted = this.encryptThisBits(info, psp, encryptedFields);
         
-        return new Password (encrypted[0], encrypted[1], encrypted[2], encrypted[3], encrypted[4]);        
+        return new Password (encrypted[0], encrypted[1], encrypted[2], encrypted[3], encrypted[4], encryptedFields);        
     }
     
     private String toBits (String word) {
@@ -46,7 +48,7 @@ public class Encryptor {
         return result;
     }
     
-    private String[] encryptThisBits (String info[], String psp) {
+    private String[] encryptThisBits (String info[], String psp, boolean[] encFields) {
         // info crypted using XOR and the passphrase
         String[] crpd = new String[5];
         for (int i = 0; i < crpd.length; i++) {
@@ -57,27 +59,31 @@ public class Encryptor {
         int maxLenght = psp.length();
         
         for (int i = 0; i < info.length; i++) {
-            String currentWord = info[i];
-              
-            for (int j = 0; j < currentWord.length(); j++) {
-                char c = currentWord.charAt(j);
-                char p = psp.charAt(pspCounter);
-                
-                String result;
-                if (c == p) {
-                    result = "0";
-                }
-                else {
-                    result = "1";
-                }
-                crpd[i] = crpd[i].concat(result);
-                
-                pspCounter ++;
-                if (pspCounter >= maxLenght) {
-                    pspCounter = 0;
+            if (encFields[i]) {                
+                String currentWord = info[i];
+
+                for (int j = 0; j < currentWord.length(); j++) {
+                    char c = currentWord.charAt(j);
+                    char p = psp.charAt(pspCounter);
+
+                    String result;
+                    if (c == p) {
+                        result = "0";
+                    }
+                    else {
+                        result = "1";
+                    }
+                    crpd[i] = crpd[i].concat(result);
+
+                    pspCounter ++;
+                    if (pspCounter >= maxLenght) {
+                        pspCounter = 0;
+                    }
                 }
             }
-            
+            else {
+                crpd[i] = info[i];
+            }
         }
         return crpd;
     }
@@ -124,22 +130,24 @@ public class Encryptor {
         String[] infoDecBit;
         String[] infoDecTxt = new String[5];
                 
+        boolean[] encryptedFields = (boolean[]) p.getInfo(5);
+        
         for (int i = 0; i < 5; i++) {
-            info[i] = p.getInfo(i);
+            info[i] = (String) p.getInfo(i);
         }
         
-        infoDecBit = this.decryptThisByts(info, passphrase);                
+        infoDecBit = this.decryptThisBits(info, passphrase, encryptedFields);                
         
         for (int i = 0; i < infoDecBit.length; i++) {
             infoDecTxt[i] = this.toText(infoDecBit[i]);
         }
         
-        decrypted = new Password(infoDecTxt[0], infoDecTxt[1], infoDecTxt[2], infoDecTxt[3], infoDecTxt[4]);
+        decrypted = new Password(infoDecTxt[0], infoDecTxt[1], infoDecTxt[2], infoDecTxt[3], infoDecTxt[4], encryptedFields);
         
         return decrypted;
     }
     
-    private String[] decryptThisByts (String info[], String psp) {
+    private String[] decryptThisBits (String info[], String psp, boolean[] encFields) {
         // info decrypted using XOR and the passphrase
         String passphrase = this.toBits(psp);
         String[] infoDec = new String[5];
@@ -152,24 +160,30 @@ public class Encryptor {
         int maxLenght = passphrase.length();
         
         for (int i = 0; i < info.length; i++) {         
-            for (int j = 0; j < info[i].length(); j++) {
-                char c = info[i].charAt(j);
-                char p = passphrase.charAt(counter);
-                
-                String result;
-                if (c == p) {
-                    result = "0";
-                }
-                else {
-                    result = "1";
-                }
-                infoDec[i] = infoDec[i].concat(result);
-                
-                counter ++;
-                if (counter >= maxLenght) {
-                    counter = 0;
-                }
-            }           
+            
+            if (encFields[i]) {               
+                for (int j = 0; j < info[i].length(); j++) {
+                    char c = info[i].charAt(j);
+                    char p = passphrase.charAt(counter);
+
+                    String result;
+                    if (c == p) {
+                        result = "0";
+                    }
+                    else {
+                        result = "1";
+                    }
+                    infoDec[i] = infoDec[i].concat(result);
+
+                    counter ++;
+                    if (counter >= maxLenght) {
+                        counter = 0;
+                    }
+                }  
+            }
+            else {
+                infoDec[i] = info[i];
+            }
         }
         return infoDec;
     }
