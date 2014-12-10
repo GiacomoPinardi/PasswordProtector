@@ -74,7 +74,6 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         jCheckBox4.setSelected(true);
 
         jCheckBox5.setSelected(true);
-        jCheckBox5.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -257,6 +256,7 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         jCheckBox2.setSelected(true);
         jCheckBox3.setSelected(true);
         jCheckBox4.setSelected(true);
+        jCheckBox5.setSelected(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

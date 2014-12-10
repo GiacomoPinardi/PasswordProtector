@@ -175,7 +175,6 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
 
         jCheckBox4.setEnabled(false);
 
-        jCheckBox5.setSelected(true);
         jCheckBox5.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -481,6 +480,7 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         jCheckBox2.setEnabled(true);
         jCheckBox3.setEnabled(true);
         jCheckBox4.setEnabled(true);
+        jCheckBox5.setEnabled(true);
         
         jButton2.setEnabled(false);
         jButton3.setEnabled(true);
@@ -499,6 +499,7 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         jCheckBox2.setEnabled(false);
         jCheckBox3.setEnabled(false);
         jCheckBox4.setEnabled(false);
+        jCheckBox5.setEnabled(false);
                 
         jButton2.setEnabled(true);
         jButton3.setEnabled(false);
