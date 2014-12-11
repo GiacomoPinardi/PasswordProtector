@@ -188,6 +188,10 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         else if (jTextField1.getText().equals("")) {
             return 3;
         }
+        // psw will not crypted?!
+        else if (!jCheckBox5.isSelected()) {
+            return 4;
+        }
         // all si good
         else {
             return 0;

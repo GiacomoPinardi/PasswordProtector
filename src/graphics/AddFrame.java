@@ -101,6 +101,15 @@ public class AddFrame extends javax.swing.JFrame {
         if (jButton1.getText().equals("Next ->")) {
             // first input check
             switch (pip.getProblems()) {
+                case 4:
+                    // psw will not crypted?!
+                    int h = JOptionPane.showConfirmDialog(rootPane, "The password will not encrypted,\nso everyone can easly read it.\nAre you sure?", "Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    // h == 0, YES
+                    // h == 1, NO
+                    if (h == 1) {
+                        break;
+                    }
+                // else go to case 0:
                 case 0:
                     // all is good
                     pip.setVisible(false);
@@ -119,7 +128,7 @@ public class AddFrame extends javax.swing.JFrame {
                 case 3:
                     // no description
                     JOptionPane.showMessageDialog(rootPane, "Please fill description field!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    break;
+                    break;                
             }            
         }
         else {
