@@ -43,9 +43,11 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -92,8 +94,10 @@ public class GraphicInterface extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jSeparator2.setForeground(new java.awt.Color(153, 153, 153));
-        jMenu1.add(jSeparator2);
+        jMenuItem7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem7.setText("<html><b>Change</b> Passphrase</html>");
+        jMenu1.add(jMenuItem7);
+        jMenu1.add(jSeparator4);
 
         jMenuItem3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuItem3.setText("<html><b>Close</b> Password Folder</html>");
@@ -104,8 +108,9 @@ public class GraphicInterface extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jSeparator3.setForeground(new java.awt.Color(153, 153, 153));
-        jMenu1.add(jSeparator3);
+        jSeparator2.setForeground(new java.awt.Color(153, 153, 153));
+        jMenu1.add(jSeparator2);
+        jMenu1.add(jSeparator5);
 
         jMenuItem6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuItem6.setText("<html><b>Delete</b> Password Folder</html>");
@@ -311,9 +316,11 @@ public class GraphicInterface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     // End of variables declaration//GEN-END:variables
 }
