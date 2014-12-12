@@ -32,8 +32,8 @@ import passwordprotector.Encryptor;
 
 public class OpenDialog extends javax.swing.JDialog {
 
-    final JFileChooser fc = new JFileChooser();
-    FileFilter filter = new FileNameExtensionFilter(".pf file","pf");
+    JFileChooser fc = null;
+    FileFilter filter = null;
     
     Encryptor enc = new Encryptor();
     
@@ -45,7 +45,11 @@ public class OpenDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setTitle("Open PasswordFolder");
+        
+        fc = new JFileChooser();
         fc.setAcceptAllFileFilterUsed(false);
+        filter = new FileNameExtensionFilter(".pf file","pf");
+        
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);        
     }
     
@@ -207,7 +211,7 @@ public class OpenDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public Object[] showAndReturn () {
-        this.show();                
+        this.setVisible(true);
         return data;   
     }
     

@@ -12,14 +12,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class StorageInformationPanel extends javax.swing.JPanel {
 
-    final JFileChooser fc = new JFileChooser();
-    FileFilter filter = new FileNameExtensionFilter(".pf file","pf");
+    JFileChooser fc = null;
+    FileFilter filter = null;
     
     File f1 = null;
     File f2 = null;
     
     public StorageInformationPanel() {
         initComponents();
+        
+        fc = new JFileChooser();
+        filter = new FileNameExtensionFilter(".pf file","pf");
         fc.setAcceptAllFileFilterUsed(false);
     }
 

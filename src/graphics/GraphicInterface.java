@@ -17,6 +17,7 @@ public class GraphicInterface extends javax.swing.JFrame {
     AboutFrame ab = new AboutFrame();
     OpenDialog od = new OpenDialog(this,true);
     PasswordDetailsDialog pdd = new PasswordDetailsDialog(this, true);
+    ChangePassphraseFrame cpf = new ChangePassphraseFrame();
     
     PasswordFolder decrypted = null;
     Object[] openData = new Object[2];
@@ -96,6 +97,11 @@ public class GraphicInterface extends javax.swing.JFrame {
 
         jMenuItem7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMenuItem7.setText("<html><b>Change</b> Passphrase</html>");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem7);
         jMenu1.add(jSeparator4);
 
@@ -187,7 +193,7 @@ public class GraphicInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        af.show();
+        af.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -273,6 +279,10 @@ public class GraphicInterface extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         ab.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        cpf.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
     
     private void setList (PasswordFolder passfold) {
         if (passfold != null) {

@@ -381,7 +381,7 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         
         this.saved = false;
         
-        this.show();
+        this.setVisible(true);
         return decision;
     }
     
