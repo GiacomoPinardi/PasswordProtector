@@ -28,11 +28,17 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import passwordprotector.Encryptor;
+import passwordprotector.PasswordFolder;
+import passwordprotector.Serializer;
 
 public class ChangePassphraseFrame extends javax.swing.JFrame {
 
     JFileChooser fc = null;
     FileFilter filter = null;
+    
+    Encryptor enc = new Encryptor();
+    Serializer ser = new Serializer();
     
     File f1 = null;
     
@@ -252,7 +258,24 @@ public class ChangePassphraseFrame extends javax.swing.JFrame {
             else {
                 // all is good
                 
-                // TO DO
+                PasswordFolder cry = new PasswordFolder();
+                String path = f1.getAbsolutePath();
+                
+                // file selected is decrypted with old passphrase
+                PasswordFolder dec = enc.decryptThisFile(f1, op);
+                f1.delete(); /// check return
+                
+                // 'dec' is encrypted using the new passphrase, then added to the encrypted PasswordFolder 'cry'
+                for (int i = 0; i < dec.size(); i++) {
+                    cry.add(enc.encryptThisPassword(dec.get(i), np));
+                }
+                
+                // encrypted PasswordFolder is serialized and writed on disk
+                ser.createNew(cry, path); ////////////////////////////////////
+
+
+
+// check return --> tutti e due da checkkare
                 
                 JOptionPane.showMessageDialog(rootPane, "Successfully changed PasswordFolder passphrase!\n\nRemember to keep your new passphrase in a safe place.", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 this.specialDispose();
