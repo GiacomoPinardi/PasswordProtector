@@ -15,6 +15,7 @@ public class GraphicInterface extends javax.swing.JFrame {
     Serializer ser = new Serializer();
     AddFrame af = new AddFrame();
     AboutFrame ab = new AboutFrame();
+    HelpFrame hf = new HelpFrame();
     OpenDialog od = new OpenDialog(this,true);
     PasswordDetailsDialog pdd = new PasswordDetailsDialog(this, true);
     ChangePassphraseFrame cpf = new ChangePassphraseFrame();
@@ -131,7 +132,13 @@ public class GraphicInterface extends javax.swing.JFrame {
 
         jMenu2.setText("Help");
 
-        jMenuItem5.setText("Help (todo)");
+        jMenuItem5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem5.setText("Help");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuItem4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -283,6 +290,10 @@ public class GraphicInterface extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         cpf.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        hf.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
     
     private void setList (PasswordFolder passfold) {
         if (passfold != null) {
