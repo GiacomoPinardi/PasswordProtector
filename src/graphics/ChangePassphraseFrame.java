@@ -257,27 +257,27 @@ public class ChangePassphraseFrame extends javax.swing.JFrame {
             }
             else {
                 // all is good
-                
+                                                
                 PasswordFolder cry = new PasswordFolder();
                 String path = f1.getAbsolutePath();
                 
                 // file selected is decrypted with old passphrase
                 PasswordFolder dec = enc.decryptThisFile(f1, op);
-                f1.delete(); /// check return
-                
+                                
                 // 'dec' is encrypted using the new passphrase, then added to the encrypted PasswordFolder 'cry'
                 for (int i = 0; i < dec.size(); i++) {
                     cry.add(enc.encryptThisPassword(dec.get(i), np));
                 }
                 
                 // encrypted PasswordFolder is serialized and writed on disk
-                ser.createNew(cry, path); ////////////////////////////////////
-
-
-
-// check return --> tutti e due da checkkare
+                if (ser.createNew(cry, path)) {
+                    JOptionPane.showMessageDialog(rootPane, "Successfully changed PasswordFolder's passphrase!\n\nRemember to keep your new passphrase in a safe place.", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else {
+                    // cannot create new PasswordFolder error
+                    JOptionPane.showMessageDialog(rootPane, "Cannot change the PasswordFolder's passphrase!", "ERROR", JOptionPane.ERROR_MESSAGE);                        
+                }                                          
                 
-                JOptionPane.showMessageDialog(rootPane, "Successfully changed PasswordFolder passphrase!\n\nRemember to keep your new passphrase in a safe place.", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                 this.specialDispose();
             }
         }
