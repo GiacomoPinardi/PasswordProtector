@@ -47,6 +47,8 @@ public class StorageInformationPanel extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(410, 400));
+
         jButton2.setText("Select");
         jButton2.setFocusPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {

@@ -34,7 +34,7 @@ public class PasswordInformationPanel extends javax.swing.JPanel {
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox5 = new javax.swing.JCheckBox();
 
-        setPreferredSize(new java.awt.Dimension(410, 370));
+        setPreferredSize(new java.awt.Dimension(410, 400));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel7.setText("Repeat password:");

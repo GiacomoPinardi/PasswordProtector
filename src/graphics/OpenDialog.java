@@ -68,6 +68,7 @@ public class OpenDialog extends javax.swing.JDialog {
         jPasswordField3 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel1.setText("Select .pf file to open and use passphrase to decrypt it:");

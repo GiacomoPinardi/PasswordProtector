@@ -39,6 +39,7 @@ public class AddFrame extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(410, 400));
 
         jButton1.setText("Next ->");
         jButton1.setFocusPainted(false);
