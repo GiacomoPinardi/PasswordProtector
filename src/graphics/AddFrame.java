@@ -150,7 +150,7 @@ public class AddFrame extends javax.swing.JFrame {
                     if (sip.getAction()) {
                         // add to existing PasswordFolder
                         if (ser.addToExisting(pswCrypted, path)) {
-                            JOptionPane.showMessageDialog(rootPane, "Successfully added a new Password in:\n" + path, "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(rootPane, "Successfully added a new Password in:\n" + path + "\n\nRemember to store a copy of your\nPasswordFolder in a safe place.", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                             this.specialDispose();
                         }
                         else {
@@ -163,7 +163,7 @@ public class AddFrame extends javax.swing.JFrame {
                         passfold.add(pswCrypted);
                         
                         if (ser.createNew(passfold, path)) {
-                            JOptionPane.showMessageDialog(rootPane, "Successfully created a new PasswordFolder in:\n" + path, "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(rootPane, "Successfully created a new PasswordFolder in:\n" + path + "\n\nRemember to store a copy of your\nPasswordFolder in a safe place.", "SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
                             this.specialDispose();
                         }
                         else {
