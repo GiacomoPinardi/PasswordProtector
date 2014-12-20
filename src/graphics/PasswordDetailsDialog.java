@@ -1,11 +1,13 @@
 
 package graphics;
 
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import passwordprotector.Password;
 
@@ -30,6 +32,9 @@ public class PasswordDetailsDialog extends javax.swing.JDialog {
         jPasswordField2.setVisible(false);
         
         clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        
+        Image image = new ImageIcon("src/img/lock.png").getImage();
+        this.setIconImage(image);
     }
 
     @SuppressWarnings("unchecked")

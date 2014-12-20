@@ -23,12 +23,18 @@
  */
 package graphics;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 public class HelpFrame extends javax.swing.JFrame {
     
     public HelpFrame() {
         initComponents();
         this.setTitle("Help & F.A.Q.");
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);   
+        
+        Image image = new ImageIcon("src/img/lock.png").getImage();
+        this.setIconImage(image);
     }
     
     @SuppressWarnings("unchecked")

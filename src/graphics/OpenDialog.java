@@ -23,7 +23,9 @@
  */
 package graphics;
 
+import java.awt.Image;
 import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
@@ -50,7 +52,10 @@ public class OpenDialog extends javax.swing.JDialog {
         fc.setAcceptAllFileFilterUsed(false);
         filter = new FileNameExtensionFilter(".pf file","pf");
         
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);        
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
+        Image image = new ImageIcon("src/img/lock.png").getImage();
+        this.setIconImage(image);
     }
     
     @SuppressWarnings("unchecked")

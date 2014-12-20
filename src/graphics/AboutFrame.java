@@ -2,9 +2,11 @@
 package graphics;
 
 import java.awt.Desktop;
+import java.awt.Image;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class AboutFrame extends javax.swing.JFrame {
@@ -26,6 +28,9 @@ public class AboutFrame extends javax.swing.JFrame {
         catch (URISyntaxException ex) {
             JOptionPane.showMessageDialog(rootPane, "Wrong syntax of the URL","ERROR!" , JOptionPane.ERROR_MESSAGE);
         }
+        
+        Image image = new ImageIcon("src/img/lock.png").getImage();
+        this.setIconImage(image);
     }
     
     @SuppressWarnings("unchecked")

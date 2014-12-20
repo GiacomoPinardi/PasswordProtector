@@ -1,8 +1,12 @@
 
 package graphics;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
+import java.net.URL;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import passwordprotector.Encryptor;
 import passwordprotector.Password;
@@ -28,7 +32,10 @@ public class GraphicInterface extends javax.swing.JFrame {
     
     public GraphicInterface() {
         initComponents();
-        this.setTitle("Password Protector");        
+        this.setTitle("Password Protector");  
+                
+        Image image = new ImageIcon("src/img/lock.png").getImage();
+        this.setIconImage(image);
     }
     
     @SuppressWarnings("unchecked")

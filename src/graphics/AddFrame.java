@@ -2,6 +2,8 @@
 package graphics;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import passwordprotector.Encryptor;
 import passwordprotector.Password;
@@ -28,6 +30,9 @@ public class AddFrame extends javax.swing.JFrame {
         jButton3.show(false);
         
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
+        Image image = new ImageIcon("src/img/lock.png").getImage();
+        this.setIconImage(image);
     }
 
     @SuppressWarnings("unchecked")
