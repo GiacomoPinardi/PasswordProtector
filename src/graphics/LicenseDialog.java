@@ -1,3 +1,23 @@
+/*
+ *
+ *  PasswordProtector - Store your password in a safe place
+ *
+ *  Copyright (C) 2014  Giacomo Pinardi
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ */
 
 package graphics;
 
@@ -46,7 +66,7 @@ public class LicenseDialog extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(160, 160, 160));
 
         jLabel2.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        jLabel2.setText("<html><b>PasswordProtector - Store your password in a safe place<br> <br> Copyright (C) 2014  Giacomo Pinardi</b><br><br>  This program is free software: you can redistribute it and/or modify<br> it under the terms of the GNU General Public License as published by<br> the Free Software Foundation, either version 3 of the License, or<br> (at your option) any later version.<br> <br> This program is distributed in the hope that it will be useful,<br> but WITHOUT ANY WARRANTY; without even the implied warranty of<br> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br> GNU General Public License for more details.<br> <br> You should have received a copy of the GNU General Public License<br> along with this program.  If not, see <http://www.gnu.org/licenses/>.<br></html>");
+        jLabel2.setText("<html><b>PasswordProtector - Store your password in a safe place<br> <br> Copyright (C) 2014  Giacomo Pinardi</b><br><br>  This program is free software: you can redistribute it and/or modify<br> it under the terms of the GNU General Public License as published by<br> the Free Software Foundation, either version 3 of the License, or<br> (at your option) any later version.<br> <br> This program is distributed in the hope that it will be useful,<br> but WITHOUT ANY WARRANTY; without even the implied warranty of<br> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br> GNU General Public License for more details.<br> <br> You should have received a copy of the GNU General Public License<br> along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.<br></html>");
 
         jButton1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton1.setText("Full License");
