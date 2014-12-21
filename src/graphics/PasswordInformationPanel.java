@@ -1,8 +1,6 @@
 
 package graphics;
 
-import java.util.Arrays;
-
 public class PasswordInformationPanel extends javax.swing.JPanel {
     
     public PasswordInformationPanel() {
