@@ -2,9 +2,7 @@
 package graphics;
 
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.File;
-import java.net.URL;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -35,7 +33,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         this.setTitle("Password Protector");  
                 
         Image image = new ImageIcon("src/img/lock.png").getImage();
-        this.setIconImage(image);
+        this.setIconImage(image);        
     }
     
     @SuppressWarnings("unchecked")
@@ -86,6 +84,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu1.setText("Action");
 
         jMenuItem1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add_16x16.png"))); // NOI18N
         jMenuItem1.setText("<html><b>New</b> Password</html>");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +94,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/open_16x16.png"))); // NOI18N
         jMenuItem2.setText("<html><b>Open</b> Password Folder</html>");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +104,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/change_16x16.png"))); // NOI18N
         jMenuItem7.setText("<html><b>Change</b> Passphrase</html>");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +115,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu1.add(jSeparator4);
 
         jMenuItem3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close_16x16.png"))); // NOI18N
         jMenuItem3.setText("<html><b>Close</b> Password Folder</html>");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +129,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu1.add(jSeparator5);
 
         jMenuItem6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete_16x16.png"))); // NOI18N
         jMenuItem6.setText("<html><b>Delete</b> Password Folder</html>");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +143,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu2.setText("Help");
 
         jMenuItem5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/help_16x16.png"))); // NOI18N
         jMenuItem5.setText("Help");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +153,7 @@ public class GraphicInterface extends javax.swing.JFrame {
         jMenu2.add(jMenuItem5);
 
         jMenuItem4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/about_16x16.png"))); // NOI18N
         jMenuItem4.setText("About");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
