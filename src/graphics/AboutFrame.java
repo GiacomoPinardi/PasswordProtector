@@ -73,7 +73,6 @@ public class AboutFrame extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(380, 390));
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         jLabel1.setText("Password Protector");
@@ -108,7 +107,7 @@ public class AboutFrame extends javax.swing.JFrame {
         jLabel8.setText("Version:");
 
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel9.setText("v 2.2");
+        jLabel9.setText("v 2.7.7");
 
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
 
